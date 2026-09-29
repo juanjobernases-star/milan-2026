@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#231F1C" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C0E11" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Milán">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Milán en Navidad</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%9A%82</text></svg>">
+</head>
+<body>
+<style>
+  :root{
+    --ground:#F7F4F0; --surface:#FFFFFF; --surface-2:#EFE9E2;
+    --ink:#1C1815; --ink-2:#6E645C; --ink-3:#79706A;
+    --board:#231F1C; --board-ink:#F1ECE6; --board-dim:#A59C94; --board-brass:#C8A882; --board-red:#E4604F;
+    --rule:#DCD4CA; --rule-strong:#C4B9AD;
+    --accent:#B03728; --accent-ink:#8E2C20; --accent-soft:#F3DED8;
+    --glacier:#2F6480; --glacier-soft:#DEE9EF;
+    --pine:#3D6B4A; --pine-soft:#DFEBE2;
+    --brass:#8C6C28; --brass-soft:#F2E7CE;
+    --shadow:0 1px 2px rgba(28,24,21,.06), 0 8px 24px -12px rgba(28,24,21,.18);
+    --display:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
+    --serif:"Iowan Old Style","Charter","Palatino Linotype",Palatino,Georgia,serif;
+    --ui:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#121418; --surface:#1A1E23; --surface-2:#222831;
+      --ink:#F1ECE6; --ink-2:#A59C94; --ink-3:#948B84;
+      --board:#0C0E11;
+      --rule:#2C333B; --rule-strong:#3D4650;
+      --accent:#E4604F; --accent-ink:#F08776; --accent-soft:#3A201B;
+      --glacier:#7DB2CC; --glacier-soft:#1B2A33;
+      --pine:#7FB48C; --pine-soft:#1B2A1F;
+      --brass:#C9A45A; --brass-soft:#2B2416;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#121418; --surface:#1A1E23; --surface-2:#222831;
+    --ink:#F1ECE6; --ink-2:#A59C94; --ink-3:#948B84;
+    --board:#0C0E11;
+    --rule:#2C333B; --rule-strong:#3D4650;
+    --accent:#E4604F; --accent-ink:#F08776; --accent-soft:#3A201B;
+    --glacier:#7DB2CC; --glacier-soft:#1B2A33;
+    --pine:#7FB48C; --pine-soft:#1B2A1F;
+    --brass:#C9A45A; --brass-soft:#2B2416;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:62px}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--ui); font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:680px; margin:0 auto; padding:0 20px 80px}
+
+  /* panel de salidas */
+  .board{background:var(--board); color:var(--board-ink); margin:0 -20px; padding:26px 20px 20px; border-bottom:3px solid var(--accent)}
+  .board .kicker{font-family:var(--display); text-transform:uppercase; letter-spacing:.22em; font-size:11.5px; color:var(--board-brass); margin:0 0 9px}
+  .board h1{font-family:var(--display); font-weight:700; font-size:clamp(36px,11.5vw,58px); line-height:.92; margin:0; text-transform:uppercase; text-wrap:balance}
+  .board h1 .it{color:var(--board-red)}
+  .boardmeta{display:flex; flex-wrap:wrap; gap:5px 20px; margin-top:16px; font-family:var(--display); text-transform:uppercase; letter-spacing:.1em; font-size:12.5px; color:var(--board-dim)}
+  .boardmeta b{color:var(--board-ink); font-weight:600; font-variant-numeric:tabular-nums}
+
+  nav{position:sticky; top:0; z-index:20; margin:0 -20px; padding:9px 20px;
+      background:color-mix(in srgb, var(--ground) 88%, transparent);
+      -webkit-backdrop-filter:saturate(180%) blur(12px); backdrop-filter:saturate(180%) blur(12px);
+      border-bottom:1px solid var(--rule); display:flex; gap:7px; overflow-x:auto; scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  nav a{flex:0 0 auto; text-decoration:none; color:var(--ink-2); font-family:var(--display);
+        text-transform:uppercase; letter-spacing:.12em; font-size:11.5px; padding:7px 12px;
+        border:1px solid var(--rule); border-radius:999px; background:var(--surface)}
+  nav a:hover{color:var(--ink); border-color:var(--rule-strong)}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
+
+  section{padding-top:40px}
+  h2{font-family:var(--display); text-transform:uppercase; letter-spacing:.14em; font-size:13.5px; font-weight:600; color:var(--accent-ink); margin:0 0 4px}
+  .sub{font-family:var(--serif); font-size:19.5px; line-height:1.35; margin:0 0 18px; text-wrap:balance}
+  p.note{font-family:var(--serif); color:var(--ink-2); font-size:15.5px; line-height:1.6; margin:0 0 12px}
+
+  /* aviso principal */
+  .alert{margin-top:24px; background:var(--surface); border:1.5px solid var(--accent); border-radius:13px; padding:16px 17px; box-shadow:var(--shadow)}
+  .alert .h{font-family:var(--display); text-transform:uppercase; letter-spacing:.14em; font-size:11.5px; color:var(--accent); margin-bottom:7px}
+  .alert h3{margin:0 0 7px; font-size:17.5px; letter-spacing:-.01em}
+  .alert p{margin:0 0 9px; font-size:14.5px; color:var(--ink-2); line-height:1.55}
+  .alert p:last-child{margin-bottom:0}
+  .specs{display:flex; flex-wrap:wrap; gap:7px; margin-top:11px}
+  .spec{font-family:var(--display); font-size:11px; text-transform:uppercase; letter-spacing:.1em;
+        padding:4px 9px; border-radius:5px; background:var(--surface-2); color:var(--ink-2); font-variant-numeric:tabular-nums}
+
+  /* vía */
+  .line{position:relative; padding-left:34px}
+  .line::before{content:""; position:absolute; left:8px; top:14px; bottom:24px; width:2px; background:linear-gradient(var(--rule-strong), var(--rule))}
+  .day{font-family:var(--display); text-transform:uppercase; letter-spacing:.16em; font-size:12px; color:var(--ink-2); margin:24px 0 10px}
+  .day:first-child{margin-top:0}
+  .day em{font-style:normal; color:var(--ink-3)}
+  .stop{position:relative; margin-bottom:14px}
+  .stop::before{content:""; position:absolute; left:-32px; top:6px; width:11px; height:11px; border-radius:50%;
+                background:var(--ground); border:2.5px solid var(--rule-strong)}
+  .stop.key::before{background:var(--accent); border-color:var(--accent); box-shadow:0 0 0 4px var(--accent-soft)}
+  .stop.open::before{background:var(--ground); border-color:var(--accent); border-style:dashed}
+  .card{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:13px 15px; box-shadow:var(--shadow)}
+  .stop.key .card{border-color:var(--accent); border-width:1.5px}
+  .time{font-family:var(--display); font-variant-numeric:tabular-nums; letter-spacing:.08em; font-size:11.5px;
+        text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:3px}
+  .stop.key .time{color:var(--accent)}
+  .stop h3{font-family:var(--ui); font-size:16.5px; font-weight:600; margin:0 0 4px; letter-spacing:-.01em}
+  .stop p{margin:0; font-size:14.5px; color:var(--ink-2); line-height:1.55}
+
+  .pill{display:inline-block; font-family:var(--display); font-size:10.5px; text-transform:uppercase;
+        letter-spacing:.11em; padding:3px 8px; border-radius:4px; margin-top:8px}
+  .pill.ok{background:var(--pine-soft); color:var(--pine)}
+  .pill.open{background:var(--accent-soft); color:var(--accent-ink)}
+  .pill.info{background:var(--glacier-soft); color:var(--glacier)}
+
+  /* reservas */
+  .rows{border:1px solid var(--rule); border-radius:12px; background:var(--surface); overflow:hidden; box-shadow:var(--shadow)}
+  .row{display:flex; gap:12px; padding:14px 15px; border-bottom:1px solid var(--rule); align-items:flex-start}
+  .row:last-child{border-bottom:0}
+  .row .ic{font-size:19px; line-height:1.2; flex:0 0 auto}
+  .row .bd{flex:1; min-width:0}
+  .row .t{font-size:15.5px; font-weight:600; letter-spacing:-.01em}
+  .row .d{font-size:13.5px; color:var(--ink-3); margin-top:2px; line-height:1.45}
+  .row .pr{font-family:var(--display); font-variant-numeric:tabular-nums; font-size:14.5px; letter-spacing:.04em;
+           color:var(--ink); white-space:nowrap; padding-top:1px}
+  .row a{color:var(--glacier)}
+
+  /* mapas */
+  .places{display:grid; grid-template-columns:repeat(auto-fill,minmax(152px,1fr)); gap:10px}
+  .place{display:flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); background:var(--surface);
+         border:1px solid var(--rule); border-radius:11px; padding:11px 13px; box-shadow:var(--shadow);
+         transition:border-color .15s, transform .15s}
+  .place:hover{border-color:var(--accent); transform:translateY(-1px)}
+  .place .em{font-size:18px; line-height:1}
+  .place .txt{display:flex; flex-direction:column; min-width:0}
+  .place .n{font-size:14.5px; font-weight:600; letter-spacing:-.01em}
+  .place .m{font-family:var(--display); font-size:10.5px; text-transform:uppercase; letter-spacing:.11em; color:var(--ink-3); margin-top:1px}
+
+  /* presupuesto */
+  .tablewrap{overflow-x:auto; border:1px solid var(--rule); border-radius:12px; background:var(--surface); box-shadow:var(--shadow)}
+  table{width:100%; border-collapse:collapse; font-size:14.5px}
+  th,td{padding:11px 15px; text-align:left; border-bottom:1px solid var(--rule)}
+  th{font-family:var(--display); text-transform:uppercase; letter-spacing:.12em; font-size:10.5px; color:var(--ink-3); background:var(--surface-2)}
+  td.n{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; font-family:var(--display); letter-spacing:.04em; font-size:15px}
+  tr.total td{border-bottom:0; font-weight:600; background:var(--surface-2)}
+  tr.total td.n{color:var(--accent-ink); font-size:16px}
+  td .s{display:block; font-size:12.5px; color:var(--ink-3); margin-top:2px}
+
+  /* checklist */
+  .prog{display:flex; align-items:center; gap:12px; margin-bottom:13px}
+  .bar{flex:1; height:6px; background:var(--surface-2); border-radius:99px; overflow:hidden}
+  .bar i{display:block; height:100%; width:0; background:var(--accent); border-radius:99px; transition:width .25s ease}
+  .count{font-family:var(--display); font-variant-numeric:tabular-nums; font-size:13px; letter-spacing:.08em; color:var(--ink-2)}
+  ul.check{list-style:none; margin:0; padding:0; border:1px solid var(--rule); border-radius:12px; background:var(--surface); overflow:hidden; box-shadow:var(--shadow)}
+  ul.check li{border-bottom:1px solid var(--rule)}
+  ul.check li:last-child{border-bottom:0}
+  ul.check label{display:flex; gap:12px; padding:12px 15px; cursor:pointer; align-items:flex-start}
+  ul.check input{appearance:none; -webkit-appearance:none; flex:0 0 auto; margin:1px 0 0; width:20px; height:20px;
+                 border:1.5px solid var(--rule-strong); border-radius:6px; background:var(--ground); cursor:pointer; position:relative}
+  ul.check input:checked{background:var(--accent); border-color:var(--accent)}
+  ul.check input:checked::after{content:""; position:absolute; left:6.5px; top:2.5px; width:5px; height:10px;
+                                border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg)}
+  ul.check .t{font-size:15px; line-height:1.4}
+  ul.check .d{display:block; font-size:13px; color:var(--ink-3); margin-top:3px; line-height:1.45}
+  ul.check input:checked ~ .txt .t{text-decoration:line-through; color:var(--ink-3)}
+  .acts{display:flex; gap:9px; flex-wrap:wrap; margin-top:12px}
+  .btn{font-family:var(--display); text-transform:uppercase; letter-spacing:.12em; font-size:11.5px; background:none;
+       border:1px solid var(--rule); color:var(--ink-2); padding:8px 13px; border-radius:99px; cursor:pointer}
+  .btn:hover{border-color:var(--rule-strong); color:var(--ink)}
+  .btn.done{border-color:var(--accent); color:var(--accent)}
+
+  .callout{margin-top:16px; border-left:3px solid var(--brass); background:var(--surface); padding:13px 16px; border-radius:0 10px 10px 0}
+  .callout .h{font-family:var(--display); text-transform:uppercase; letter-spacing:.14em; font-size:11px; color:var(--brass); margin-bottom:5px}
+  .callout p{margin:0; font-size:14.5px; color:var(--ink-2); line-height:1.55}
+
+  footer{margin-top:50px; padding-top:18px; border-top:1px solid var(--rule); font-family:var(--display);
+         text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--ink-3);
+         display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important; scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+
+  <header class="board">
+    <p class="kicker">4 días · 3 noches · en familia</p>
+    <h1><span class="it">Milán</span><br>en Navidad</h1>
+    <div class="boardmeta">
+      <span>24 → 27 <b>DIC 2026</b></span>
+      <span>Faltan <b id="dias">—</b> días</span>
+      <span><b>3</b> viajeros</span>
+      <span>Base <b>Via Lecco 5</b></span>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#dias">Días</a>
+    <a href="#vuelos">Vuelos</a>
+    <a href="#reservas">Reservas</a>
+    <a href="#mapas">Mapas</a>
+    <a href="#comer">Comer</a>
+    <a href="#dinero">Dinero</a>
+    <a href="#lista">Lista</a>
+  </nav>
+
+  <div class="alert">
+    <div class="h">Lo que hay que tener en la cabeza</div>
+    <h3>Entras por Malpensa y sales por Bergamo</h3>
+    <p>No son el mismo aeropuerto ni están cerca: Orio al Serio queda a unos 50 km al este de Milán, y desde Centrale es una hora de bus.</p>
+    <p>Con el vuelo de vuelta a las 19:10, hay que estar en Bergamo sobre las 17:10, coger el bus hacia las 16:00 y salir del apartamento a las 15:15. <b>El día 27 se acaba a mediodía</b>: da para el Duomo y poco más.</p>
+    <div class="specs">
+      <span class="spec">Ida · MXP</span>
+      <span class="spec">Vuelta · BGY</span>
+      <span class="spec">50 km entre ellos</span>
+      <span class="spec">27 dic · salir 15:15</span>
+    </div>
+  </div>
+
+  <section id="dias">
+    <h2>Los cuatro días</h2>
+    <p class="sub">Dos madrugones seguidos, el 24 y el 26. El 25 no hay nada que correr, y menos mal.</p>
+    <div class="line">
+
+      <p class="day">Jueves 24 <em>· llegada y Nochebuena</em></p>
+      <div class="stop key">
+        <div class="card">
+          <span class="time">04:15 → 09:00</span>
+          <h3>✈️ Madrid → Milán Malpensa</h3>
+          <p>FR3009, sale 06:45 y llega 09:00. Con Ryanair y solo mochilas, en Barajas sobre las 05:00, así que salir de casa a las 04:15. Es el peor madrugón del viaje.</p>
+          <span class="pill ok">Reservado</span>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="card">
+          <span class="time">09:30 → 11:00</span>
+          <h3>🚆 Malpensa Express y apartamento</h3>
+          <p>Tren directo a Milano Centrale, unos 50 minutos, sale cada media hora. De Centrale a Via Lecco 5 hay un cuarto de hora andando, en Porta Venezia.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="card">
+          <span class="time">2 h 45 min</span>
+          <h3>🚶 Free tour por Milán</h3>
+          <p>Gratis. Buena forma de situarse el primer día, y cansa lo justo después del madrugón.</p>
+          <span class="pill ok">Reservado</span>
+        </div>
+      </div>
+      <div class="stop key">
+        <div class="card">
+          <span class="time">Antes de que cierren</span>
+          <h3>🛒 La compra del 25</h3>
+          <p>Mañana es Navidad y en Milán no abre ni un supermercado. En un apartamento eso significa desayuno, almuerzo y cena resueltos hoy o no resueltos. El 24 por la tarde muchos cierran pronto.</p>
+          <span class="pill open">Sin esto, el 25 se complica</span>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="card">
+          <span class="time">Noche</span>
+          <h3>🍝 Nochebuena</h3>
+          <p>Si queréis cenar fuera, mesa reservada con semanas de antelación. Si no, cena en el apartamento con lo comprado por la tarde.</p>
+        </div>
+      </div>
+
+      <p class="day">Viernes 25 <em>· Navidad, día libre</em></p>
+      <div class="stop">
+        <div class="card">
+          <span class="time">Todo el día</span>
+          <h3>🎄 Sin plan, a propósito</h3>
+          <p>Milán cierra casi entero. Paseo por el centro, Duomo y Galleria por fuera —que es cuando mejor se ven, sin colas— y descanso, porque mañana toca levantarse a las seis.</p>
+          <span class="pill info">Se come de lo comprado ayer</span>
+        </div>
+      </div>
+
+      <p class="day">Sábado 26 <em>· los Alpes</em></p>
+      <div class="stop key">
+        <div class="card">
+          <span class="time">07–08 h → 19–20 h · 12 h 30 min</span>
+          <h3>🏔️ Alpes suizos y St. Moritz en tren</h3>
+          <p>El día grande y el más largo: doce horas y media puerta a puerta. Se cruza a Suiza, así que los tres necesitan documento en vigor, el pequeño el suyo propio. Desayuno antes de salir y algo de comer encima.</p>
+          <span class="pill ok">Reservado · 330,78 €</span>
+        </div>
+      </div>
+
+      <p class="day">Domingo 27 <em>· medio día y vuelta</em></p>
+      <div class="stop">
+        <div class="card">
+          <span class="time">09:00 → 15:00</span>
+          <h3>⛪ Duomo y terrazas</h3>
+          <p>Es lo que hay que ver sí o sí, y las terrazas son lo que justifica la entrada: se sube entre las agujas. La Galleria está pegada. Castello y Navigli solo si sobra tiempo, que no sobrará.</p>
+          <span class="pill info">Entradas · 20–50 €</span>
+        </div>
+      </div>
+      <div class="stop key">
+        <div class="card">
+          <span class="time">15:15 → 17:10</span>
+          <h3>🚌 Centrale → Bergamo Orio al Serio</h3>
+          <p>Salir del apartamento a las 15:15, bus desde Centrale sobre las 16:00, una hora de trayecto. Mejor billete comprado antes: el 27 vuelve mucha gente.</p>
+          <span class="pill open">Bus por reservar</span>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="card">
+          <span class="time">19:10 → 21:30</span>
+          <h3>✈️ Bergamo → Madrid</h3>
+          <p>FR5494. En Madrid a las 21:30.</p>
+          <span class="pill ok">Reservado</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="vuelos">
+    <h2>Vuelos</h2>
+    <p class="sub">Ryanair, ida y vuelta, sin facturar.</p>
+    <div class="rows">
+      <div class="row">
+        <span class="ic">🛫</span>
+        <span class="bd">
+          <span class="t">FR3009 · Madrid → Milán Malpensa</span>
+          <span class="d">Jueves 24 dic · MAD 06:45 → MXP 09:00 · 2 h 15 min</span>
+        </span>
+        <span class="pr">06:45</span>
+      </div>
+      <div class="row">
+        <span class="ic">🛬</span>
+        <span class="bd">
+          <span class="t">FR5494 · Milán Bergamo → Madrid</span>
+          <span class="d">Domingo 27 dic · BGY 19:10 → MAD 21:30 · 2 h 20 min</span>
+        </span>
+        <span class="pr">19:10</span>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="h">Ryanair: el check-in no es opcional</div>
+      <p>Si no hacéis el check-in online antes de llegar al aeropuerto, lo cobran en mostrador y no es barato. Se abre 24 horas antes de cada vuelo, o antes si lleváis asiento asignado. Las tarjetas de embarque, a Wallet.</p>
+    </div>
+  </section>
+
+  <section id="reservas">
+    <h2>Reservas</h2>
+    <p class="sub">Todo cerrado menos el bus de vuelta a Bergamo.</p>
+    <div class="rows">
+      <div class="row">
+        <span class="ic">🏠</span>
+        <span class="bd">
+          <span class="t">Apartamento en Via Lecco 5</span>
+          <span class="d">Porta Venezia · 3 noches · a un cuarto de hora a pie de Milano Centrale</span>
+        </span>
+        <span class="pr">—</span>
+      </div>
+      <div class="row">
+        <span class="ic">🏔️</span>
+        <span class="bd">
+          <span class="t">Alpes suizos y St. Moritz en tren</span>
+          <span class="d">26 dic por la mañana · 12 h 30 min · 110,26 € por persona</span>
+        </span>
+        <span class="pr">330,78 €</span>
+      </div>
+      <div class="row">
+        <span class="ic">✈️</span>
+        <span class="bd">
+          <span class="t">Vuelos Ryanair FR3009 y FR5494</span>
+          <span class="d">MAD → MXP el 24 · BGY → MAD el 27 · sin equipaje facturado</span>
+        </span>
+        <span class="pr">✓</span>
+      </div>
+      <div class="row">
+        <span class="ic">🚶</span>
+        <span class="bd">
+          <span class="t">Free tour por Milán</span>
+          <span class="d">24 dic · 2 h 45 min · propina a criterio</span>
+        </span>
+        <span class="pr">Gratis</span>
+      </div>
+      <div class="row">
+        <span class="ic">🚌</span>
+        <span class="bd">
+          <span class="t">Bus Milano Centrale → Bergamo</span>
+          <span class="d">27 dic sobre las 16:00 · una hora · sin reservar</span>
+        </span>
+        <span class="pr">~30 €</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="mapas">
+    <h2>Mapas</h2>
+    <p class="sub">Cada sitio abre Apple Maps con las indicaciones puestas desde donde estés.</p>
+    <div class="places" id="places"></div>
+  </section>
+
+  <section id="comer">
+    <h2>Comer</h2>
+    <p class="sub">Hay cocina en el apartamento, y el 25 no vais a tener otra.</p>
+    <p class="note">Sin media pensión, las doce comidas del viaje se resuelven entre el apartamento y la calle. Los desayunos en casa salen prácticamente gratis y ahorran tiempo los dos días de madrugón.</p>
+    <div class="rows">
+      <div class="row"><span class="ic">🥩</span><span class="bd"><span class="t">Ossobuco alla milanese</span><span class="d">El plato de la ciudad. Jarrete de ternera guisado, con su tuétano.</span></span></div>
+      <div class="row"><span class="ic">🍚</span><span class="bd"><span class="t">Risotto alla milanese</span><span class="d">Con azafrán, amarillo intenso. Suele acompañar al ossobuco.</span></span></div>
+      <div class="row"><span class="ic">🍖</span><span class="bd"><span class="t">Cotoletta alla milanese</span><span class="d">Chuleta empanada con hueso. La apuesta segura con un niño de once años.</span></span></div>
+      <div class="row"><span class="ic">🍕</span><span class="bd"><span class="t">Spontini</span><span class="d">Porción de pizza gruesa, rápida y barata. Para almorzar sin ceremonia.</span></span></div>
+      <div class="row"><span class="ic">🍝</span><span class="bd"><span class="t">Trattoria Milanese · Osteria del Treno · Da Giannino</span><span class="d">Las clásicas. En Navidad, mesa reservada con semanas de antelación o nada.</span></span></div>
+    </div>
+    <div class="callout">
+      <div class="h">El 25 lo decide la compra del 24</div>
+      <p>En Navidad no abre ni un supermercado en Milán, y el 24 por la tarde muchos cierran pronto. Con apartamento y sin media pensión, lo que no esté en la nevera el día 24 no se come el 25. Es el recado más importante del primer día.</p>
+    </div>
+  </section>
+
+  <section id="dinero">
+    <h2>Dinero</h2>
+    <p class="sub">Lo confirmado y lo que falta por poner número.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Concepto</th><th style="text-align:right">Importe</th></tr></thead>
+        <tbody>
+          <tr><td>Apartamento Via Lecco 5<span class="s">3 noches · importe por confirmar</span></td><td class="n">—</td></tr>
+          <tr><td>Vuelos Ryanair<span class="s">ida y vuelta, 3 personas · importe por confirmar</span></td><td class="n">—</td></tr>
+          <tr><td>Excursión a St. Moritz<span class="s">3 personas a 110,26 €</span></td><td class="n">330,78 €</td></tr>
+          <tr><td>Comida<span class="s">sube: ya no hay media pensión</span></td><td class="n">~250 €</td></tr>
+          <tr><td>Entradas del Duomo<span class="s">terrazas incluidas</span></td><td class="n">~50 €</td></tr>
+          <tr><td>Transporte<span class="s">Malpensa Express, bus a Bergamo, metro</span></td><td class="n">~90 €</td></tr>
+          <tr class="total"><td>Cerrado hasta ahora</td><td class="n">720 € + alojamiento y vuelos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:14px">La estimación que había en el proyecto —entre 2.040 y 2.240 €— se hizo con el hotel y su media pensión. Con apartamento cambian dos partidas en sentidos opuestos: el alojamiento probablemente baja y la comida sube unos 150 €. Cuando tengas los dos importes, el total real sale solo.</p>
+  </section>
+
+  <section id="lista">
+    <h2>Preparación</h2>
+    <p class="sub">Marcada aquí se queda marcada, también si cierras la página.</p>
+    <div class="prog"><div class="bar"><i id="fill"></i></div><span class="count" id="count">0 / 0</span></div>
+    <ul class="check" id="check"></ul>
+    <div class="acts">
+      <button class="btn" id="copy" type="button">Copiar la lista</button>
+      <button class="btn" id="reset" type="button">Desmarcar todo</button>
+    </div>
+  </section>
+
+  <footer>
+    <span>Via Lecco 5 · Porta Venezia</span>
+    <span>24 – 27 dic 2026</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var salida = new Date(2026,11,24,6,45,0);
+  var dias = Math.ceil((salida - new Date())/86400000);
+  document.getElementById('dias').textContent = dias > 0 ? dias : '0';
+
+  var P = [
+    ['\uD83C\uDFE0','Apartamento','Via Lecco 5','Via Lecco 5, 20124 Milano, Italy','w'],
+    ['\u26EA','Duomo','Piazza del Duomo','Duomo di Milano, Piazza del Duomo, 20122 Milano, Italy','w'],
+    ['\uD83D\uDECD\uFE0F','Galleria','Vittorio Emanuele II','Galleria Vittorio Emanuele II, Piazza del Duomo, 20123 Milano, Italy','w'],
+    ['\uD83C\uDFF0','Castello','Sforzesco','Castello Sforzesco, Piazza Castello, 20121 Milano, Italy','w'],
+    ['\uD83C\uDF03','Navigli','Ripa di Porta Ticinese','Navigli, Ripa di Porta Ticinese, 20143 Milano, Italy','w'],
+    ['\uD83D\uDE86','Milano Centrale','Trenes y bus a Bergamo','Milano Centrale, Piazza Duca d\'Aosta, 20124 Milano, Italy','w'],
+    ['\uD83D\uDED2','Supermercado','Cerca del apartamento','q:Supermercato, Porta Venezia, Milano, Italy'],
+    ['\uD83C\uDF5D','Trattoria Milanese','Osteria clásica','q:Trattoria Milanese, Milano, Italy'],
+    ['\uD83C\uDF5D','Osteria del Treno','Cerca del apartamento','q:Osteria del Treno, Milano, Italy'],
+    ['\uD83C\uDF55','Spontini','Pizza al taglio','q:Spontini, Milano, Italy'],
+    ['\u2708\uFE0F','Malpensa','Llegada del 24','Aeroporto di Milano Malpensa, 21010 Ferno VA, Italy','r'],
+    ['\u2708\uFE0F','Bergamo Orio al Serio','Salida del 27','Aeroporto di Bergamo-Orio al Serio, Via Aeroporto 13, 24050 Grassobbio BG, Italy','r']
+  ];
+  var ph = document.getElementById('places');
+  P.forEach(function(p){
+    var a = document.createElement('a');
+    a.className = 'place';
+    if(p[3].indexOf('q:') === 0){
+      a.href = 'http://maps.apple.com/?q=' + encodeURIComponent(p[3].slice(2));
+    } else {
+      a.href = 'http://maps.apple.com/?daddr=' + encodeURIComponent(p[3]) + '&dirflg=' + p[4];
+    }
+    a.innerHTML = '<span class="em"></span><span class="txt"><span class="n"></span><span class="m"></span></span>';
+    a.querySelector('.em').textContent = p[0];
+    a.querySelector('.n').textContent = p[1];
+    a.querySelector('.m').textContent = p[2];
+    ph.appendChild(a);
+  });
+
+  var C = [
+    ['\uD83D\uDED2 Comprar comida el 24 para el 25','El recado crítico. En Navidad no abre nada y el 24 cierran pronto.'],
+    ['\u2705 Check-in online de Ryanair','Los dos vuelos. Si no, lo cobran en mostrador. Tarjetas de embarque a Wallet.'],
+    ['\uD83D\uDCC4 DNI o pasaporte en vigor de los tres','El pequeño necesita el suyo propio. El 26 se cruza a Suiza.'],
+    ['\uD83C\uDF9F\uFE0F Billete del bus Centrale → Bergamo','Para el 27 sobre las 16:00. Comprado antes, que ese día vuelve mucha gente.'],
+    ['\uD83D\uDE86 Billetes del Malpensa Express','Para el 24 por la mañana. Se pueden sacar en el andén, pero con cola.'],
+    ['\uD83C\uDFE5 Tarjeta Sanitaria Europea','Para los tres. No cubre Suiza: ojo con el día de St. Moritz.'],
+    ['\uD83D\uDEE1\uFE0F Seguro de viaje con cobertura en Suiza','La TSE se queda en la frontera.'],
+    ['\uD83C\uDF92 Medir las mochilas','Sin facturar: comprobar las medidas de cabina de Ryanair, que son estrictas.'],
+    ['\uD83D\uDD11 Confirmar la entrada al apartamento','Llegáis sobre las 11:00. Llaves o código y contacto del anfitrión.'],
+    ['\uD83D\uDEA2 Confirmar la excursión del 26','Hora exacta y punto de recogida. Sale entre las 7 y las 8.'],
+    ['\uD83C\uDF9F\uFE0F Entradas del Duomo y las terrazas','Online para el 27 por la mañana, que el tiempo es justo.'],
+    ['\uD83E\uDDE5 Ropa térmica por capas','Los tres. St. Moritz en diciembre va bajo cero.'],
+    ['\uD83E\uDD7E Calzado antideslizante','Nieve y hielo en los Alpes, adoquín mojado en Milán.'],
+    ['\uD83D\uDD76\uFE0F Gafas de sol y crema','La nieve refleja muchísimo, también con nubes.'],
+    ['\uD83C\uDFAE Entretenimiento para el tren','Doce horas y media el día 26. Auriculares, descargas y algo de picar.'],
+    ['\uD83D\uDCB6 Euros y algo de francos suizos','En St. Moritz el cambio en euros no acompaña.'],
+    ['\uD83D\uDD0C Cargadores y powerbank','Cargados la noche del 25: el 26 es larguísimo y el frío se come la batería.'],
+    ['\uD83D\uDDFA\uFE0F Mapas offline','Milán y la Engadina, descargados antes de salir.'],
+    ['\uD83D\uDC8A Botiquín y medicación','Y protector labial: aire seco y frío.']
+  ];
+  var KEY = 'milan2026.v3';
+  var store = {
+    get: function(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } },
+    set: function(v){ try{ localStorage.setItem(KEY, JSON.stringify(v)); }catch(e){} }
+  };
+  var state = store.get();
+  var ul = document.getElementById('check'), fill = document.getElementById('fill'), cnt = document.getElementById('count');
+  function refresh(){
+    var done = 0, i;
+    for(i=0;i<C.length;i++){ if(state[i]) done++; }
+    fill.style.width = (done / C.length * 100) + '%';
+    cnt.textContent = done + ' / ' + C.length;
+  }
+  C.forEach(function(item, i){
+    var li = document.createElement('li');
+    li.innerHTML = '<label><input type="checkbox"><span class="txt"><span class="t"></span><span class="d"></span></span></label>';
+    li.querySelector('.t').textContent = item[0];
+    li.querySelector('.d').textContent = item[1];
+    var box = li.querySelector('input');
+    box.checked = !!state[i];
+    box.addEventListener('change', function(){
+      if(box.checked){ state[i] = 1; } else { delete state[i]; }
+      store.set(state); refresh();
+    });
+    ul.appendChild(li);
+  });
+  refresh();
+
+  document.getElementById('reset').addEventListener('click', function(){
+    state = {}; store.set(state);
+    Array.prototype.forEach.call(ul.querySelectorAll('input'), function(b){ b.checked = false; });
+    refresh();
+  });
+
+  var copyBtn = document.getElementById('copy');
+  function flash(txt){
+    copyBtn.textContent = txt; copyBtn.classList.add('done');
+    setTimeout(function(){ copyBtn.textContent = 'Copiar la lista'; copyBtn.classList.remove('done'); }, 2200);
+  }
+  copyBtn.addEventListener('click', function(){
+    var texto = C.map(function(x){ return x[0]; }).join('\n');
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(texto).then(function(){ flash('Lista copiada'); }, function(){ fb(texto); });
+    } else { fb(texto); }
+  });
+  function fb(texto){
+    var ta = document.createElement('textarea');
+    ta.value = texto; ta.setAttribute('readonly','');
+    ta.style.cssText = 'position:absolute;left:-9999px;top:0';
+    document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, texto.length);
+    var ok = false;
+    try{ ok = document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+    flash(ok ? 'Lista copiada' : 'No se pudo copiar');
+  }
+})();
+</script>
+
+</body>
+</html>
