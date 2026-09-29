@@ -157,6 +157,30 @@
   .guide .g{display:flex; align-items:center; gap:10px; min-width:0}
   .guide .arrow{font-family:var(--display); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
 
+  /* restaurantes */
+  .restos{display:flex; flex-direction:column; gap:14px; margin-top:22px}
+  .resto{background:var(--surface); border:1px solid var(--rule); border-radius:13px; padding:16px 17px; box-shadow:var(--shadow)}
+  .resto .eyebrow{font-family:var(--display); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px;
+                  color:var(--brass); margin:0 0 5px}
+  .resto h3{margin:0 0 7px; font-size:19px; letter-spacing:-.015em; text-wrap:balance}
+  .resto .desc{margin:0 0 13px; font-size:14.5px; color:var(--ink-2); line-height:1.55}
+  .facts{margin:0 0 13px; display:flex; flex-direction:column; gap:7px}
+  .facts > div{display:flex; gap:10px; align-items:baseline}
+  .facts dt{flex:0 0 96px; font-family:var(--display); text-transform:uppercase; letter-spacing:.1em;
+            font-size:10px; color:var(--ink-3); padding-top:1px}
+  .facts dd{margin:0; flex:1; font-size:14px; line-height:1.45}
+  .days{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:13px}
+  .days .d{font-family:var(--display); font-size:10.5px; text-transform:uppercase; letter-spacing:.09em;
+           padding:4px 9px; border-radius:5px; font-variant-numeric:tabular-nums}
+  .days .si{background:var(--pine-soft); color:var(--pine)}
+  .days .no{background:var(--accent-soft); color:var(--accent-ink)}
+  .days .nav{background:var(--surface-2); color:var(--ink-2)}
+  .actions{display:flex; flex-wrap:wrap; gap:8px}
+  .actions a{flex:1 1 auto; text-align:center; text-decoration:none; font-family:var(--display);
+             text-transform:uppercase; letter-spacing:.1em; font-size:11px; padding:9px 12px;
+             border:1px solid var(--rule); border-radius:99px; color:var(--ink-2); white-space:nowrap}
+  .actions a:hover{border-color:var(--accent); color:var(--accent-ink)}
+
   /* presupuesto */
   .tablewrap{overflow-x:auto; border:1px solid var(--rule); border-radius:12px; background:var(--surface); box-shadow:var(--shadow)}
   table{width:100%; border-collapse:collapse; font-size:14.5px}
@@ -218,7 +242,7 @@
     <a href="#vuelos">Vuelos</a>
     <a href="#reservas">Reservas</a>
     <a href="#mapas">Mapas</a>
-    <a href="#comer">Comer</a>
+    <a href="#restaurantes">Restaurantes</a>
     <a href="#dinero">Dinero</a>
     <a href="#lista">Lista</a>
   </nav>
@@ -421,21 +445,107 @@
     </div>
   </section>
 
-  <section id="comer">
-    <h2>Comer</h2>
-    <p class="sub">Hay cocina en el apartamento, y el 25 no vais a tener otra.</p>
-    <p class="note">Sin media pensión, las doce comidas del viaje se resuelven entre el apartamento y la calle. Los desayunos en casa salen prácticamente gratis y ahorran tiempo los dos días de madrugón.</p>
+  <section id="restaurantes">
+    <h2>Restaurantes</h2>
+    <p class="sub">Tus cuatro elegidos, con la ruta desde Via Lecco 5 y qué abre cada día.</p>
+
+    <div class="alert">
+      <div class="h">Lo primero que hay que mirar</div>
+      <h3>El 27 es domingo</h3>
+      <p>Trattoria Milanese y Osteria del Treno cierran los domingos. Para el almuerzo del último día, antes de salir a las 15:15, solo quedan Da Giannino y Spontini.</p>
+      <p>Y el 25 no abre ninguno: es Navidad. Esa comida sale de la compra del día 24.</p>
+    </div>
+
+    <div class="restos">
+      <article class="resto">
+        <p class="eyebrow">Desde 1933</p>
+        <h3>Trattoria Milanese</h3>
+        <p class="desc">La milanesa de manual, en una sala que lleva en la misma esquina desde antes de la guerra. Es la que hay que reservar con más antelación.</p>
+        <dl class="facts">
+          <div><dt>Dónde</dt><dd>Via Santa Marta 11, 20123 Milano</dd></div>
+          <div><dt>Desde el apartamento</dt><dd>Metro M1 desde Porta Venezia, unos 15 min</dd></div>
+          <div><dt>Horario</dt><dd>12:00–14:30 y 19:00–22:30 · domingo cerrado</dd></div>
+          <div><dt>Pedir</dt><dd>Risotto alla milanese, ossobuco, costoletta, cassoeula</dd></div>
+        </dl>
+        <div class="days"><span class="d si">24 jue</span><span class="d nav">25 vie · Navidad</span><span class="d si">26 sáb</span><span class="d no">27 dom cerrado</span></div>
+        <div class="actions">
+          <a href="http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Santa%20Marta%2011%2C%2020123%20Milano%2C%20Italy&dirflg=r">🧭 Cómo llegar</a>
+          <a href="tel:+390286451991">📞 Reservar</a>
+          <a href="https://www.tripadvisor.es/Restaurant_Review-g187849-d4409934-Reviews-Trattoria_Milanese_Dal_1933-Milan_Lombardy.html" rel="noreferrer">⭐ TripAdvisor</a>
+        </div>
+      </article>
+      <article class="resto">
+        <p class="eyebrow">Slow Food · el más cercano</p>
+        <h3>Osteria del Treno</h3>
+        <p class="desc">A un paseo corto del apartamento. Cocina lombarda puesta al día, carta de más de setenta vinos y, al mediodía entre semana, un self-service servido por el propio cocinero.</p>
+        <dl class="facts">
+          <div><dt>Dónde</dt><dd>Via San Gregorio 46, 20124 Milano</dd></div>
+          <div><dt>Desde el apartamento</dt><dd>Unos 10 minutos a pie desde Via Lecco 5</dd></div>
+          <div><dt>Horario</dt><dd>12:00–15:00 y 19:30–23:00 · sábado solo cena · domingo cerrado</dd></div>
+          <div><dt>Pedir</dt><dd>Los clásicos lombardos, y dejarse aconsejar el vino</dd></div>
+        </dl>
+        <div class="days"><span class="d si">24 jue</span><span class="d nav">25 vie · Navidad</span><span class="d si">26 sáb</span><span class="d no">27 dom cerrado</span></div>
+        <div class="actions">
+          <a href="http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20San%20Gregorio%2046%2C%2020124%20Milano%2C%20Italy&dirflg=w">🧭 Cómo llegar</a>
+          <a href="tel:+39026700479">📞 Reservar</a>
+          <a href="https://www.tripadvisor.es/Restaurant_Review-g187849-d1214759-Reviews-Osteria_del_Treno-Milan_Lombardy.html" rel="noreferrer">⭐ TripAdvisor</a>
+        </div>
+      </article>
+      <article class="resto">
+        <p class="eyebrow">Guía Michelin</p>
+        <h3>Da Giannino — L'Angolo d'Abruzzo</h3>
+        <p class="desc">Trattoria de barrio sin ninguna pretensión: mesas pegadas, mantel de cuadros rojos y raciones abruzesas enormes. El único de los cuatro que abre el domingo.</p>
+        <dl class="facts">
+          <div><dt>Dónde</dt><dd>Via Rosolino Pilo 20, 20129 Milano</dd></div>
+          <div><dt>Desde el apartamento</dt><dd>Unos 12 minutos a pie desde Via Lecco 5</dd></div>
+          <div><dt>Horario</dt><dd>12:00–14:30 y 19:30–23:00 · lunes cerrado</dd></div>
+          <div><dt>Pedir</dt><dd>Sagne e fagioli, maccheroni alla chitarra, cordero asado, arrosticini</dd></div>
+        </dl>
+        <div class="days"><span class="d si">24 jue</span><span class="d nav">25 vie · Navidad</span><span class="d si">26 sáb</span><span class="d si">27 dom</span></div>
+        <div class="actions">
+          <a href="http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Rosolino%20Pilo%2020%2C%2020129%20Milano%2C%20Italy&dirflg=w">🧭 Cómo llegar</a>
+          <a href="tel:+390229406526">📞 Reservar</a>
+          <a href="https://guide.michelin.com/es/es/lombardia/milano/restaurant/da-giannino-l-angolo-d-abruzzo" rel="noreferrer">⭐ Guía Michelin</a>
+        </div>
+      </article>
+      <article class="resto">
+        <p class="eyebrow">Desde 1953 · sin reserva</p>
+        <h3>Spontini</h3>
+        <p class="desc">El trancio milanés: masa alta y blanda con la base frita, que la deja crujiente. Se pide en el mostrador y se come de pie o en dos minutos. La solución para el almuerzo del 27 con el reloj encima.</p>
+        <dl class="facts">
+          <div><dt>Dónde</dt><dd>Via Gaspare Spontini 4, 20131 Milano</dd></div>
+          <div><dt>Desde el apartamento</dt><dd>Unos 13 minutos a pie desde Via Lecco 5</dd></div>
+          <div><dt>Horario</dt><dd>Todos los días, 12:00–15:00 y 19:00–23:00</dd></div>
+          <div><dt>Pedir</dt><dd>Trancio de margherita, que es lo único que importa</dd></div>
+        </dl>
+        <div class="days"><span class="d si">24 jue</span><span class="d nav">25 vie · Navidad</span><span class="d si">26 sáb</span><span class="d si">27 dom</span></div>
+        <div class="actions">
+          <a href="http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Gaspare%20Spontini%204%2C%2020131%20Milano%2C%20Italy&dirflg=w">🧭 Cómo llegar</a>
+          <a href="tel:+39022047444">📞 Reservar</a>
+          <a href="https://www.tripadvisor.es/Restaurant_Review-g187849-d1097521-Reviews-Pizzeria_Spontini-Milan_Lombardy.html" rel="noreferrer">⭐ TripAdvisor</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="callout">
+      <div class="h">Ninguno reserva por TheFork</div>
+      <p>Busqué los cuatro y no están en la plataforma, así que el botón de reservar llama directamente al restaurante. En fechas navideñas es además la única forma fiable: los horarios de arriba son los normales de temporada y esos días cambian sin avisar. Llama antes de plantarte allí.</p>
+    </div>
+
+    <div class="guides" style="margin-top:16px">
+      <div class="gh">Tu lista completa</div>
+      <a class="guide" href="https://maps.app.goo.gl/A5uA1qrqYsyK2t5s5" rel="noreferrer"><span class="g">🍽️ Gastronomía en Google Maps</span><span class="arrow">Abrir →</span></a>
+    </div>
+
+    <h2 style="margin-top:38px">Qué pedir</h2>
+    <p class="sub">Los platos por los que merece la pena ir.</p>
     <div class="rows">
       <div class="row"><span class="ic">🥩</span><span class="bd"><span class="t">Ossobuco alla milanese</span><span class="d">El plato de la ciudad. Jarrete de ternera guisado, con su tuétano.</span></span></div>
       <div class="row"><span class="ic">🍚</span><span class="bd"><span class="t">Risotto alla milanese</span><span class="d">Con azafrán, amarillo intenso. Suele acompañar al ossobuco.</span></span></div>
       <div class="row"><span class="ic">🍖</span><span class="bd"><span class="t">Cotoletta alla milanese</span><span class="d">Chuleta empanada con hueso. La apuesta segura con un niño de once años.</span></span></div>
-      <div class="row"><span class="ic">🍕</span><span class="bd"><span class="t">Spontini</span><span class="d">Porción de pizza gruesa, rápida y barata. Para almorzar sin ceremonia.</span></span></div>
-      <div class="row"><span class="ic">🍝</span><span class="bd"><span class="t">Trattoria Milanese · Osteria del Treno · Da Giannino</span><span class="d">Las clásicas. En Navidad, mesa reservada con semanas de antelación o nada.</span></span></div>
+      <div class="row"><span class="ic">🥘</span><span class="bd"><span class="t">Cassoeula</span><span class="d">Cerdo con berza, guiso de invierno. Justo lo que pide el 26 al volver de los Alpes.</span></span></div>
     </div>
-    <div class="callout">
-      <div class="h">Tu guía de gastronomía</div>
-      <p style="margin-bottom:10px">Los sitios que fuiste guardando en Google Maps: <a href="https://maps.app.goo.gl/A5uA1qrqYsyK2t5s5" rel="noreferrer" style="color:var(--glacier)">abrir la lista 🍽️ Gastronomía</a>.</p>
-    </div>
+
     <div class="callout">
       <div class="h">El 25 lo decide la compra del 24</div>
       <p>En Navidad no abre ni un supermercado en Milán, y el 24 por la tarde muchos cierran pronto. Con apartamento y sin media pensión, lo que no esté en la nevera el día 24 no se come el 25. Es el recado más importante del primer día.</p>
