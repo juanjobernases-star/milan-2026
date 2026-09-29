@@ -4,13 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="#231F1C" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0C0E11" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Viaje a Milán del 24 al 27 de diciembre de 2026.">
+<meta name="theme-color" content="#F7F4F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Milán">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Milán en Navidad</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%9A%82</text></svg>">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 </head>
 <body>
 <style>
@@ -566,5 +570,12 @@
 })();
 </script>
 
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js', {scope: './'}).catch(function(){});
+  });
+}
+</script>
 </body>
 </html>
