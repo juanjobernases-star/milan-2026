@@ -147,6 +147,16 @@
   .place .n{font-size:14.5px; font-weight:600; letter-spacing:-.01em}
   .place .m{font-family:var(--display); font-size:10.5px; text-transform:uppercase; letter-spacing:.11em; color:var(--ink-3); margin-top:1px}
 
+  .guides{margin-top:16px; border:1px solid var(--rule); border-radius:12px; background:var(--surface); overflow:hidden; box-shadow:var(--shadow)}
+  .guides .gh{font-family:var(--display); text-transform:uppercase; letter-spacing:.14em; font-size:11px;
+              padding:11px 15px; background:var(--surface-2); color:var(--ink-2); border-bottom:1px solid var(--rule)}
+  .guide{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 15px;
+         text-decoration:none; color:var(--ink); border-bottom:1px solid var(--rule); font-size:15px}
+  .guide:last-child{border-bottom:0}
+  .guide:hover{background:var(--surface-2)}
+  .guide .g{display:flex; align-items:center; gap:10px; min-width:0}
+  .guide .arrow{font-family:var(--display); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
+
   /* presupuesto */
   .tablewrap{overflow-x:auto; border:1px solid var(--rule); border-radius:12px; background:var(--surface); box-shadow:var(--shadow)}
   table{width:100%; border-collapse:collapse; font-size:14.5px}
@@ -398,6 +408,17 @@
     <h2>Mapas</h2>
     <p class="sub">Cada sitio abre Apple Maps con las indicaciones puestas desde donde estés.</p>
     <div class="places" id="places"></div>
+
+    <div class="guides">
+      <div class="gh">Tus guías guardadas</div>
+      <a class="guide" href="https://maps.app.goo.gl/A5uA1qrqYsyK2t5s5" rel="noreferrer"><span class="g">🗂️ Guía 1</span><span class="arrow">Google Maps →</span></a>
+      <a class="guide" href="https://maps.app.goo.gl/S4daBMETuHUxeCrw9" rel="noreferrer"><span class="g">🗂️ Guía 2</span><span class="arrow">Google Maps →</span></a>
+      <a class="guide" href="https://maps.app.goo.gl/PBpzZoEWTkBVsp6t9" rel="noreferrer"><span class="g">🗂️ Guía 3</span><span class="arrow">Google Maps →</span></a>
+    </div>
+    <div class="callout">
+      <div class="h">Son las únicas que abren Google Maps</div>
+      <p>Todo lo de arriba va a Apple Maps con las indicaciones puestas. Estas tres abren la app de Google Maps con tus listas guardadas, que solo se ven con tu sesión iniciada. Dime cómo se llama cada una y les pongo su nombre.</p>
+    </div>
   </section>
 
   <section id="comer">
