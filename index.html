@@ -59,6 +59,7 @@
 
   *{box-sizing:border-box}
   html{scroll-behavior:smooth; scroll-padding-top:62px}
+  .subsec{scroll-margin-top:62px}
   body{
     margin:0; background:var(--ground); color:var(--ink);
     font-family:var(--ui); font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
@@ -156,6 +157,21 @@
   .guide:hover{background:var(--surface-2)}
   .guide .g{display:flex; align-items:center; gap:10px; min-width:0}
   .guide .arrow{font-family:var(--display); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
+
+  /* subsecciones */
+  .subnav{display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; margin:0 -20px 4px; padding:0 20px 2px}
+  .subnav::-webkit-scrollbar{display:none}
+  .subnav a{flex:0 0 auto; text-decoration:none; font-family:var(--display); text-transform:uppercase;
+            letter-spacing:.11em; font-size:10.5px; color:var(--ink-2); padding:6px 11px;
+            border:1px solid var(--rule); border-radius:999px; background:var(--surface-2)}
+  .subnav a:hover{color:var(--ink); border-color:var(--rule-strong)}
+  .subsec{padding-top:30px; margin-top:28px; border-top:1px solid var(--rule)}
+  .subsec:first-of-type{border-top:0; margin-top:8px; padding-top:20px}
+  .subsec > h3{font-family:var(--display); text-transform:uppercase; letter-spacing:.13em; font-size:13px;
+               color:var(--ink); margin:0 0 7px; display:flex; align-items:center; gap:9px}
+  .subsec > h3::before{content:""; width:16px; height:2px; background:var(--accent); flex:0 0 auto; border-radius:2px}
+  .subsec > p.lead{font-family:var(--serif); font-size:16.5px; line-height:1.5; color:var(--ink-2); margin:0 0 16px}
+  .subsec > .alert:first-of-type{margin-top:0}
 
   /* buscador de restaurantes */
   .chips{display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; margin:0 -20px 16px; padding:0 20px}
@@ -475,18 +491,34 @@
 
   <section id="restaurantes">
     <h2>Restaurantes</h2>
-    <p class="sub">Tus cuatro elegidos, con la ruta desde Via Lecco 5 y qué abre cada día.</p>
+    <p class="sub">Veintiocho sitios alrededor de Via Lecco 5, tus cuatro elegidos con ficha completa, y las dos fechas que lo condicionan todo.</p>
 
+    <div class="subnav">
+      <a href="#r-avisos">Antes de reservar</a>
+      <a href="#r-cerca">Cerca de casa</a>
+      <a href="#r-elegidos">Tus elegidos</a>
+      <a href="#r-platos">Qué pedir</a>
+      <a href="#r-lista">Tu lista</a>
+    </div>
+
+    <div class="subsec" id="r-avisos">
+      <h3>Antes de reservar</h3>
+      <p class="lead">Dos días del viaje limitan dónde se puede comer, y conviene resolverlos antes que nada.</p>
     <div class="alert">
       <div class="h">Lo primero que hay que mirar</div>
       <h3>El 27 es domingo</h3>
       <p>Trattoria Milanese y Osteria del Treno cierran los domingos. Para el almuerzo del último día, antes de salir a las 15:15, solo quedan Da Giannino y Spontini.</p>
       <p>Y el 25 no abre ninguno: es Navidad. Esa comida sale de la compra del día 24.</p>
     </div>
+    <div class="callout">
+      <div class="h">El 25 lo decide la compra del 24</div>
+      <p>En Navidad no abre ni un supermercado en Milán, y el 24 por la tarde muchos cierran pronto. Con apartamento y sin media pensión, lo que no esté en la nevera el día 24 no se come el 25. Es el recado más importante del primer día.</p>
+    </div>
+    </div>
 
-
-    <h2 style="margin-top:36px">28 sitios alrededor</h2>
-    <p class="sub">Ordénalos como te haga falta. El icono 🧭 abre la ruta a pie desde Via Lecco 5.</p>
+    <div class="subsec" id="r-cerca">
+      <h3>Cerca del apartamento</h3>
+      <p class="lead">Agrupa la lista como te haga falta. El icono 🧭 de cada tarjeta abre la ruta a pie desde tu portal.</p>
     <div class="chips" id="chips">
       <button type="button" data-g="cerca" aria-pressed="true">Por cercanía</button>
       <button type="button" data-g="precio" aria-pressed="false">Por precio</button>
@@ -498,9 +530,11 @@
       <div class="h">De dónde salen estos datos</div>
       <p>Las distancias están calculadas en línea recta desde Via Lecco 5 con coordenadas reales, así que andando siempre será algo más. Puntuaciones, precio medio y enlaces de reserva son de TheFork, consultados hoy. Tus cuatro elegidos van marcados con ★ y no están en TheFork: esos enlazan a TripAdvisor o a la Guía Michelin.</p>
     </div>
+    </div>
 
-    <h2 style="margin-top:36px">Tus cuatro elegidos</h2>
-    <p class="sub">Con la ficha completa: horarios, qué pedir y qué abre cada día.</p>
+    <div class="subsec" id="r-elegidos">
+      <h3>Tus cuatro elegidos</h3>
+      <p class="lead">Los del proyecto del viaje, con horarios, qué pedir y qué abre cada día.</p>
     <div class="restos">
       <article class="resto">
         <p class="eyebrow">Desde 1933</p>
@@ -576,25 +610,28 @@
       <div class="h">Ninguno reserva por TheFork</div>
       <p>Busqué los cuatro y no están en la plataforma, así que el botón de reservar llama directamente al restaurante. En fechas navideñas es además la única forma fiable: los horarios de arriba son los normales de temporada y esos días cambian sin avisar. Llama antes de plantarte allí.</p>
     </div>
-
-    <div class="guides" style="margin-top:16px">
-      <div class="gh">Tu lista completa</div>
-      <a class="guide" href="https://maps.app.goo.gl/A5uA1qrqYsyK2t5s5" rel="noreferrer"><span class="g">🍽️ Gastronomía en Google Maps</span><span class="arrow">Abrir →</span></a>
     </div>
 
-    <h2 style="margin-top:38px">Qué pedir</h2>
-    <p class="sub">Los platos por los que merece la pena ir.</p>
+    <div class="subsec" id="r-platos">
+      <h3>Qué pedir</h3>
+      <p class="lead">Los platos por los que merece la pena entrar, estés donde estés.</p>
     <div class="rows">
       <div class="row"><span class="ic">🥩</span><span class="bd"><span class="t">Ossobuco alla milanese</span><span class="d">El plato de la ciudad. Jarrete de ternera guisado, con su tuétano.</span></span></div>
       <div class="row"><span class="ic">🍚</span><span class="bd"><span class="t">Risotto alla milanese</span><span class="d">Con azafrán, amarillo intenso. Suele acompañar al ossobuco.</span></span></div>
       <div class="row"><span class="ic">🍖</span><span class="bd"><span class="t">Cotoletta alla milanese</span><span class="d">Chuleta empanada con hueso. La apuesta segura con un niño de once años.</span></span></div>
       <div class="row"><span class="ic">🥘</span><span class="bd"><span class="t">Cassoeula</span><span class="d">Cerdo con berza, guiso de invierno. Justo lo que pide el 26 al volver de los Alpes.</span></span></div>
     </div>
-
-    <div class="callout">
-      <div class="h">El 25 lo decide la compra del 24</div>
-      <p>En Navidad no abre ni un supermercado en Milán, y el 24 por la tarde muchos cierran pronto. Con apartamento y sin media pensión, lo que no esté en la nevera el día 24 no se come el 25. Es el recado más importante del primer día.</p>
     </div>
+
+    <div class="subsec" id="r-lista">
+      <h3>Tu lista de Google Maps</h3>
+      <p class="lead">Los sitios que fuiste guardando por tu cuenta.</p>
+    <div class="guides" style="margin-top:16px">
+      <div class="gh">Tu lista completa</div>
+      <a class="guide" href="https://maps.app.goo.gl/A5uA1qrqYsyK2t5s5" rel="noreferrer"><span class="g">🍽️ Gastronomía en Google Maps</span><span class="arrow">Abrir →</span></a>
+    </div>
+    </div>
+
   </section>
 
   <section id="dinero">
