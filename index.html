@@ -58,31 +58,63 @@
   }
 
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth; scroll-padding-top:62px}
-  .subsec{scroll-margin-top:62px}
+  html{scroll-behavior:smooth; scroll-padding-top:70px}
+  .subsec{scroll-margin-top:70px}
   body{
     margin:0; background:var(--ground); color:var(--ink);
     font-family:var(--ui); font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
   }
-  .wrap{max-width:680px; margin:0 auto; padding:0 20px 80px}
+
+
+  /* ---------- carcasa de app ---------- */
+  body{overscroll-behavior-y:none}
+  .appbar{
+    position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between;
+    gap:12px; padding:calc(env(safe-area-inset-top) + 11px) 20px 11px;
+    background:color-mix(in srgb, var(--ground) 90%, transparent);
+    -webkit-backdrop-filter:saturate(180%) blur(14px); backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid var(--rule);
+  }
+  .abtitulo{font-family:var(--display); text-transform:uppercase; letter-spacing:.15em; font-size:13px;
+            font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .abmeta{font-family:var(--display); text-transform:uppercase; letter-spacing:.11em; font-size:11px;
+          color:var(--ink-2); white-space:nowrap; font-variant-numeric:tabular-nums}
+  .abmeta b{color:var(--accent-ink); font-weight:600}
+
+  .wrap{max-width:680px; margin:0 auto; padding:0 20px calc(env(safe-area-inset-bottom) + 92px)}
+  .view{display:none}
+  .view.on{display:block; animation:entra .18s ease-out}
+  @keyframes entra{from{opacity:0; transform:translateY(5px)} to{opacity:1; transform:none}}
+  .view > section:first-child, .view > .board:first-child{padding-top:0}
+  .view > .board{margin-top:0}
+
+  .tabbar{
+    position:fixed; left:0; right:0; bottom:0; top:auto; height:auto; z-index:40; display:flex;
+    padding:0 4px calc(env(safe-area-inset-bottom) + 4px);
+    background:color-mix(in srgb, var(--ground) 92%, transparent);
+    -webkit-backdrop-filter:saturate(180%) blur(16px); backdrop-filter:saturate(180%) blur(16px);
+    border-top:1px solid var(--rule);
+  }
+  .tabbar button{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:2px;
+    padding:8px 2px 6px; background:none; border:0; cursor:pointer; color:var(--ink-2);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .tabbar .ti{font-size:19px; line-height:1.15; filter:grayscale(1) opacity(.62); transition:filter .15s}
+  .tabbar .tl{font-family:var(--display); text-transform:uppercase; letter-spacing:.09em; font-size:9.5px}
+  .tabbar button[aria-pressed="true"]{color:var(--accent-ink)}
+  .tabbar button[aria-pressed="true"] .ti{filter:none}
+  .tabbar button:focus-visible{outline:2px solid var(--accent); outline-offset:-3px; border-radius:10px}
+  @media (min-width:700px){ .tabbar{justify-content:center; gap:8px} .tabbar button{flex:0 0 108px} }
 
   /* panel de salidas */
-  .board{background:var(--board); color:var(--board-ink); margin:0 -20px; padding:26px 20px 20px; border-bottom:3px solid var(--accent)}
+  .board{background:var(--board); border-radius:0 0 16px 16px; color:var(--board-ink); margin:0 -20px; padding:26px 20px 20px; border-bottom:3px solid var(--accent)}
   .board .kicker{font-family:var(--display); text-transform:uppercase; letter-spacing:.22em; font-size:11.5px; color:var(--board-brass); margin:0 0 9px}
   .board h1{font-family:var(--display); font-weight:700; font-size:clamp(36px,11.5vw,58px); line-height:.92; margin:0; text-transform:uppercase; text-wrap:balance}
   .board h1 .it{color:var(--board-red)}
   .boardmeta{display:flex; flex-wrap:wrap; gap:5px 20px; margin-top:16px; font-family:var(--display); text-transform:uppercase; letter-spacing:.1em; font-size:12.5px; color:var(--board-dim)}
   .boardmeta b{color:var(--board-ink); font-weight:600; font-variant-numeric:tabular-nums}
 
-  nav{position:sticky; top:0; z-index:20; margin:0 -20px; padding:9px 20px;
-      background:color-mix(in srgb, var(--ground) 88%, transparent);
-      -webkit-backdrop-filter:saturate(180%) blur(12px); backdrop-filter:saturate(180%) blur(12px);
-      border-bottom:1px solid var(--rule); display:flex; gap:7px; overflow-x:auto; scrollbar-width:none}
-  nav::-webkit-scrollbar{display:none}
-  nav a{flex:0 0 auto; text-decoration:none; color:var(--ink-2); font-family:var(--display);
-        text-transform:uppercase; letter-spacing:.12em; font-size:11.5px; padding:7px 12px;
-        border:1px solid var(--rule); border-radius:999px; background:var(--surface)}
-  nav a:hover{color:var(--ink); border-color:var(--rule-strong)}
   a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
 
   section{padding-top:40px}
@@ -267,32 +299,23 @@
          display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
   @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important; scroll-behavior:auto}}
 </style>
+<div class="app">
+  <header class="appbar">
+    <span class="abtitulo" id="abtitulo">Milán en Navidad</span>
+    <span class="abmeta"><b id="dias">—</b> días</span>
+  </header>
 
-<div class="wrap">
-
+  <main class="wrap" id="main">
+    <div class="view" id="v-viaje" data-titulo="Milán en Navidad">
   <header class="board">
     <p class="kicker">4 días · 3 noches · en familia</p>
     <h1><span class="it">Milán</span><br>en Navidad</h1>
     <div class="boardmeta">
       <span>24 → 27 <b>DIC 2026</b></span>
-      <span>Faltan <b id="dias">—</b> días</span>
       <span><b>3</b> viajeros</span>
       <span>Base <b>Via Lecco 5</b></span>
     </div>
   </header>
-
-  <nav>
-    <a href="#dias">Días</a>
-    <a href="#vuelos">Vuelos</a>
-    <a href="#reservas">Reservas</a>
-    <a href="#mapas">Mapas</a>
-    <a href="#restaurantes">Restaurantes</a>
-    <a href="#compra">Supermercados</a>
-    <a href="#transporte">Transporte</a>
-    <a href="#dinero">Dinero</a>
-    <a href="#lista">Lista</a>
-  </nav>
-
   <div class="alert">
     <div class="h">Lo que hay que tener en la cabeza</div>
     <h3>Entras por Malpensa y sales por Bergamo</h3>
@@ -305,7 +328,6 @@
       <span class="spec">27 dic · salir 15:15</span>
     </div>
   </div>
-
   <section id="dias">
     <h2>Los cuatro días</h2>
     <p class="sub">Dos madrugones seguidos, el 24 y el 26. El 25 no hay nada que correr, y menos mal.</p>
@@ -399,7 +421,6 @@
 
     </div>
   </section>
-
   <section id="vuelos">
     <h2>Vuelos</h2>
     <p class="sub">Ryanair, ida y vuelta, sin facturar.</p>
@@ -426,7 +447,6 @@
       <p>Si no hacéis el check-in online antes de llegar al aeropuerto, lo cobran en mostrador y no es barato. Se abre 24 horas antes de cada vuelo, o antes si lleváis asiento asignado. Las tarjetas de embarque, a Wallet.</p>
     </div>
   </section>
-
   <section id="reservas">
     <h2>Reservas</h2>
     <p class="sub">Todo cerrado menos el bus de vuelta a Bergamo.</p>
@@ -473,24 +493,9 @@
       </div>
     </div>
   </section>
-
-  <section id="mapas">
-    <h2>Mapas</h2>
-    <p class="sub">Cada sitio abre Apple Maps con las indicaciones puestas desde donde estés.</p>
-    <div class="places" id="places"></div>
-
-    <div class="guides">
-      <div class="gh">Tus guías guardadas</div>
-      <a class="guide" href="https://maps.app.goo.gl/A5uA1qrqYsyK2t5s5" rel="noreferrer"><span class="g">🍽️ Gastronomía</span><span class="arrow">Google Maps →</span></a>
-      <a class="guide" href="https://maps.app.goo.gl/S4daBMETuHUxeCrw9" rel="noreferrer"><span class="g">🏛️ Monumentos</span><span class="arrow">Google Maps →</span></a>
-      <a class="guide" href="https://maps.app.goo.gl/PBpzZoEWTkBVsp6t9" rel="noreferrer"><span class="g">🛍️ Compras</span><span class="arrow">Google Maps →</span></a>
     </div>
-    <div class="callout">
-      <div class="h">Son las únicas que abren Google Maps</div>
-      <p>Todo lo de arriba va a Apple Maps con las indicaciones ya puestas. Estas tres abren la app de Google Maps con tus listas guardadas, así que necesitan tu sesión y conexión: no quedan disponibles sin cobertura como el resto de la app.</p>
-    </div>
-  </section>
 
+    <div class="view" id="v-comer" data-titulo="Dónde comer">
   <section id="restaurantes">
     <h2>Restaurantes</h2>
     <p class="sub">Sesenta y siete sitios entre Porta Venezia, el Duomo y Navigli, tus cuatro elegidos con ficha completa, y las dos fechas que lo condicionan todo.</p>
@@ -636,7 +641,6 @@
     </div>
 
   </section>
-
   <section id="compra">
     <h2>Supermercados</h2>
     <p class="sub">Treinta sitios donde comprar alrededor de Via Lecco 5, y el recado que decide el día de Navidad.</p>
@@ -691,7 +695,25 @@
       </div>
     </div>
   </section>
+    </div>
 
+    <div class="view" id="v-moverse" data-titulo="Moverse">
+  <section id="mapas">
+    <h2>Mapas</h2>
+    <p class="sub">Cada sitio abre Apple Maps con las indicaciones puestas desde donde estés.</p>
+    <div class="places" id="places"></div>
+
+    <div class="guides">
+      <div class="gh">Tus guías guardadas</div>
+      <a class="guide" href="https://maps.app.goo.gl/A5uA1qrqYsyK2t5s5" rel="noreferrer"><span class="g">🍽️ Gastronomía</span><span class="arrow">Google Maps →</span></a>
+      <a class="guide" href="https://maps.app.goo.gl/S4daBMETuHUxeCrw9" rel="noreferrer"><span class="g">🏛️ Monumentos</span><span class="arrow">Google Maps →</span></a>
+      <a class="guide" href="https://maps.app.goo.gl/PBpzZoEWTkBVsp6t9" rel="noreferrer"><span class="g">🛍️ Compras</span><span class="arrow">Google Maps →</span></a>
+    </div>
+    <div class="callout">
+      <div class="h">Son las únicas que abren Google Maps</div>
+      <p>Todo lo de arriba va a Apple Maps con las indicaciones ya puestas. Estas tres abren la app de Google Maps con tus listas guardadas, así que necesitan tu sesión y conexión: no quedan disponibles sin cobertura como el resto de la app.</p>
+    </div>
+  </section>
   <section id="transporte">
     <h2>Transporte</h2>
     <p class="sub">Vivís a doscientos metros del metro y a un kilómetro de Centrale. Casi todo el viaje se hace andando, y lo que no, con una tarjeta contactless.</p>
@@ -792,7 +814,9 @@
       </div>
     </div>
   </section>
+    </div>
 
+    <div class="view" id="v-dinero" data-titulo="Dinero">
   <section id="dinero">
     <h2>Dinero</h2>
     <p class="sub">Lo confirmado y lo que falta por poner número.</p>
@@ -812,7 +836,9 @@
     </div>
     <p class="note" style="margin-top:14px">La estimación que había en el proyecto —entre 2.040 y 2.240 €— se hizo con el hotel y su media pensión. Con apartamento cambian dos partidas en sentidos opuestos: el alojamiento probablemente baja y la comida sube unos 150 €. Cuando tengas los dos importes, el total real sale solo.</p>
   </section>
+    </div>
 
+    <div class="view" id="v-lista" data-titulo="Preparación">
   <section id="lista">
     <h2>Preparación</h2>
     <p class="sub">Marcada aquí se queda marcada, también si cierras la página.</p>
@@ -823,13 +849,18 @@
       <button class="btn" id="reset" type="button">Desmarcar todo</button>
     </div>
   </section>
+    </div>
 
-  <footer>
-    <span>Via Lecco 5 · Porta Venezia</span>
-    <span>24 – 27 dic 2026</span>
-  </footer>
+  </main>
+
+  <nav class="tabbar" id="tabbar" aria-label="Secciones">
+      <button type="button" data-v="viaje" aria-pressed="false"><span class="ti">🗓️</span><span class="tl">Viaje</span></button>
+      <button type="button" data-v="comer" aria-pressed="false"><span class="ti">🍽️</span><span class="tl">Comer</span></button>
+      <button type="button" data-v="moverse" aria-pressed="false"><span class="ti">🚇</span><span class="tl">Moverse</span></button>
+      <button type="button" data-v="dinero" aria-pressed="false"><span class="ti">💶</span><span class="tl">Dinero</span></button>
+      <button type="button" data-v="lista" aria-pressed="false"><span class="ti">✅</span><span class="tl">Lista</span></button>
+  </nav>
 </div>
-
 <script>
 (function(){
   var salida = new Date(2026,11,24,6,45,0);
@@ -1140,6 +1171,61 @@
     pintar(b.getAttribute('data-g'));
   });
   pintar('tipo');
+})();
+</script>
+
+<script>
+(function(){
+  var VISTAS = ['viaje','comer','moverse','dinero','lista'];
+  var barra = document.getElementById('tabbar');
+  var titulo = document.getElementById('abtitulo');
+  var scrolls = {};
+  var actual = null;
+
+  function ir(v, empujar){
+    if(VISTAS.indexOf(v) < 0) v = 'viaje';
+    if(actual) scrolls[actual] = window.scrollY;
+    VISTAS.forEach(function(x){
+      var el = document.getElementById('v-' + x);
+      if(el) el.classList.toggle('on', x === v);
+    });
+    Array.prototype.forEach.call(barra.querySelectorAll('button'), function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-v') === v));
+    });
+    var el = document.getElementById('v-' + v);
+    titulo.textContent = el ? el.getAttribute('data-titulo') : 'Milán en Navidad';
+    window.scrollTo(0, actual === v ? window.scrollY : (scrolls[v] || 0));
+    actual = v;
+    try{ localStorage.setItem('milan.tab', v); }catch(e){}
+    if(empujar && location.hash.slice(1) !== v) history.replaceState(null, '', '#' + v);
+  }
+
+  barra.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    var v = b.getAttribute('data-v');
+    if(v === actual){ window.scrollTo({top:0, behavior:'smooth'}); return; }
+    ir(v, true);
+  });
+
+  // los enlaces internos saltan a su vista antes de desplazarse
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]'); if(!a) return;
+    var id = a.getAttribute('href').slice(1); if(!id) return;
+    var destino = document.getElementById(id); if(!destino) return;
+    var vista = destino.closest('.view');
+    if(vista){
+      var v = vista.id.replace('v-','');
+      if(v !== actual){ e.preventDefault(); ir(v, true); setTimeout(function(){ destino.scrollIntoView({behavior:'smooth', block:'start'}); }, 40); }
+    }
+  });
+
+  window.addEventListener('hashchange', function(){ ir(location.hash.slice(1), false); });
+
+  var inicial = location.hash.slice(1);
+  if(VISTAS.indexOf(inicial) < 0){
+    try{ inicial = localStorage.getItem('milan.tab') || 'viaje'; }catch(e){ inicial = 'viaje'; }
+  }
+  ir(inicial, false);
 })();
 </script>
 
