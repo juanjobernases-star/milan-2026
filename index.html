@@ -288,6 +288,7 @@
     <a href="#mapas">Mapas</a>
     <a href="#restaurantes">Restaurantes</a>
     <a href="#compra">Supermercados</a>
+    <a href="#transporte">Transporte</a>
     <a href="#dinero">Dinero</a>
     <a href="#lista">Lista</a>
   </nav>
@@ -691,6 +692,107 @@
     </div>
   </section>
 
+  <section id="transporte">
+    <h2>Transporte</h2>
+    <p class="sub">Vivís a doscientos metros del metro y a un kilómetro de Centrale. Casi todo el viaje se hace andando, y lo que no, con una tarjeta contactless.</p>
+
+    <div class="subnav">
+      <a href="#t-paradas">Desde tu portal</a>
+      <a href="#t-billetes">Billetes</a>
+      <a href="#t-trayectos">Los trayectos</a>
+      <a href="#t-taxi">Taxi y Uber</a>
+    </div>
+
+    <div class="subsec" id="t-paradas">
+      <h3>Desde tu portal</h3>
+      <p class="lead">Las paradas más cercanas a Via Lecco 5, con la ruta a pie en cada tarjeta.</p>
+      <div class="chips" id="tchips">
+        <button type="button" data-g="tipo" aria-pressed="true">Por tipo</button>
+        <button type="button" data-g="cerca" aria-pressed="false">Por cercanía</button>
+      </div>
+      <div id="tlista"></div>
+      <div class="callout">
+        <div class="h">Lo que esto significa</div>
+        <p>Porta Venezia M1 está a 221 m: es vuestra boca de metro y la línea roja lleva directa al Duomo. Milano Centrale, de donde salen el tren de Malpensa y el bus a Bergamo, queda a un kilómetro, unos quince minutos andando. Y tenéis dos paradas de taxis a menos de 240 m.</p>
+      </div>
+    </div>
+
+    <div class="subsec" id="t-billetes">
+      <h3>Billetes</h3>
+      <p class="lead">Un cambio importante este año: en Milán ya no hay billetes de papel.</p>
+      <div class="alert">
+        <div class="h">Desde enero de 2026</div>
+        <h3>Se paga con la tarjeta, no con billete</h3>
+        <p>ATM retiró el billete de papel. Se entra apoyando una tarjeta bancaria contactless en el torno, o con el billete digital de su app. Cada persona necesita su propia tarjeta: no valen tres viajes con la misma.</p>
+        <p>Diego tendrá que llevar una, o comprarle el billete digital en la app.</p>
+      </div>
+      <div class="tablewrap" style="margin-top:16px">
+        <table>
+          <thead><tr><th>Título</th><th style="text-align:right">Precio</th></tr></thead>
+          <tbody>
+            <tr><td>Billete sencillo<span class="s">90 minutos, transbordos incluidos, un solo viaje en metro</span></td><td class="n">2,20 €</td></tr>
+            <tr><td>Carnet de 10 viajes<span class="s">menos de 2 € por viaje</span></td><td class="n">19,50 €</td></tr>
+            <tr><td>Diario, 24 horas</td><td class="n">7,60 €</td></tr>
+            <tr><td>Tres días<span class="s">cubre del 24 al 27 si se activa bien</span></td><td class="n">13,00 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:14px">El de tres días sale a cuenta a partir del sexto viaje por persona. Con el apartamento tan céntrico probablemente andéis más de lo que penséis, así que mirad el primer día cuánto usáis el metro antes de comprar tres abonos. Ojo: estas tarifas son de la zona urbana Mi1-Mi3 y <b>no cubren ni Malpensa ni Bergamo</b>.</p>
+    </div>
+
+    <div class="subsec" id="t-trayectos">
+      <h3>Los trayectos</h3>
+      <p class="lead">Los cuatro desplazamientos que sí hay que resolver, con lo que cuestan para los tres.</p>
+      <div class="rows">
+        <div class="row">
+          <span class="ic">🚆</span>
+          <span class="bd"><span class="t">Malpensa → Milano Centrale · el 24</span>
+          <span class="d">Malpensa Express, unos 50 min, sale cada media hora. 15 € por adulto y 7,50 € de 4 a 13 años. Billete aparte del urbano.</span></span>
+          <span class="pr">37,50 €</span>
+        </div>
+        <div class="row">
+          <span class="ic">🚶</span>
+          <span class="bd"><span class="t">Centrale → Via Lecco 5</span>
+          <span class="d">Un kilómetro, quince minutos andando. Con mochilas y sin maletas, no merece la pena ni el metro.</span></span>
+          <span class="pr">0 €</span>
+        </div>
+        <div class="row">
+          <span class="ic">🚇</span>
+          <span class="bd"><span class="t">Casa → Duomo y casa → Navigli</span>
+          <span class="d">M1 desde Porta Venezia al Duomo, directo. Para Navigli, M1 hasta Cadorna y M2 hasta Porta Genova.</span></span>
+          <span class="pr">2,20 €</span>
+        </div>
+        <div class="row">
+          <span class="ic">🚌</span>
+          <span class="bd"><span class="t">Centrale → Bergamo Orio al Serio · el 27</span>
+          <span class="d">Orio Shuttle, unos 50 min, desde 8 € por persona. Salir del apartamento a las 15:15 y coger el bus sobre las 16:00.</span></span>
+          <span class="pr">desde 24 €</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsec" id="t-taxi">
+      <h3>Taxi y Uber</h3>
+      <p class="lead">En Italia esto no funciona como en Madrid, y conviene saberlo antes de necesitarlo un domingo a las tres de la tarde.</p>
+      <div class="alert">
+        <div class="h">Lo primero que hay que entender</div>
+        <h3>Uber en Italia no es UberX</h3>
+        <p>La ley italiana solo permite taxi con licencia o vehículos NCC con conductor. Uber opera aquí como <b>Uber Black</b>, categoría NCC: funciona bien, pero cuesta bastante más que un Uber en España.</p>
+        <p>Los NCC además <b>no se pueden parar por la calle</b> ni esperan en las plazas: van siempre reservados con antelación.</p>
+      </div>
+      <div class="rows" style="margin-top:16px">
+        <div class="row"><span class="ic">🚕</span><span class="bd"><span class="t">Taxi en parada</span><span class="d">Lo más directo y lo más barato. Tenéis dos paradas a 221 y 232 m del portal. En Milán el taxi no se para con la mano: o se coge en parada o se pide.</span></span><span class="pr">—</span></div>
+        <div class="row"><span class="ic">📱</span><span class="bd"><span class="t">FreeNow · itTaxi · Wetaxi</span><span class="d">Apps que llaman a taxis con licencia, con taxímetro normal. Es lo que usa la gente de allí y lo que yo instalaría antes de salir.</span></span><span class="pr">Taxi</span></div>
+        <div class="row"><span class="ic">🖤</span><span class="bd"><span class="t">Uber Black</span><span class="d">Coche con conductor, precio cerrado antes de subir. Cómodo con equipaje o de noche, pero es la opción cara.</span></span><span class="pr">NCC</span></div>
+        <div class="row"><span class="ic">⚡</span><span class="bd"><span class="t">Bolt</span><span class="d">Llegó a Milán en junio de 2026 con el mismo modelo, y sus carreras salen hasta un tercio más baratas que las de Uber. Merece la pena comparar.</span></span><span class="pr">NCC</span></div>
+      </div>
+      <div class="callout">
+        <div class="h">Cuándo va a hacer falta de verdad</div>
+        <p>Casi nunca: el apartamento está en el centro y todo cae a pie o en metro. Los dos momentos posibles son la madrugada del 24, si no queréis andar hasta Centrale con las mochilas, y la tarde del 27 si se complica la salida hacia Bergamo. En Navidad hay menos taxis en circulación, así que pedidlo con margen.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="dinero">
     <h2>Dinero</h2>
     <p class="sub">Lo confirmado y lo que falta por poner número.</p>
@@ -703,7 +805,7 @@
           <tr><td>Excursión a St. Moritz<span class="s">3 personas a 110,26 €</span></td><td class="n">330,78 €</td></tr>
           <tr><td>Comida<span class="s">sube: ya no hay media pensión</span></td><td class="n">~250 €</td></tr>
           <tr><td>Entradas del Duomo<span class="s">terrazas incluidas</span></td><td class="n">~50 €</td></tr>
-          <tr><td>Transporte<span class="s">Malpensa Express, bus a Bergamo, metro</span></td><td class="n">~90 €</td></tr>
+          <tr><td>Transporte<span class="s">Malpensa Express 37,50 € · bus a Bergamo desde 24 € · metro</span></td><td class="n">~100 €</td></tr>
           <tr class="total"><td>Cerrado hasta ahora</td><td class="n">720 € + alojamiento y vuelos</td></tr>
         </tbody>
       </table>
@@ -989,6 +1091,55 @@
     pintar(b.getAttribute('data-g'));
   });
   pintar('cerca');
+})();
+</script>
+
+<script>
+(function(){
+  var PARADAS = [{"n":"Viale Tunisia","t":"tranvia","e":"🚋","tl":"Tranvía","m":188,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4784039,9.2031127&dirflg=w"},{"n":"Porta Venezia","t":"metro","e":"🚇","tl":"Metro","m":221,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4753258,9.2058895&dirflg=w"},{"n":"Finocchiaro Aprile","t":"taxi","e":"🚕","tl":"Parada de taxis","m":221,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4779229,9.2016916&dirflg=w"},{"n":"Porta Venezia - Viale Tunisia","t":"tranvia","e":"🚋","tl":"Tranvía","m":222,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.476636,9.2069013&dirflg=w"},{"n":"Viale Vittorio Veneto","t":"tranvia","e":"🚋","tl":"Tranvía","m":222,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4764129,9.2012996&dirflg=w"},{"n":"Parada de taxis","t":"taxi","e":"🚕","tl":"Parada de taxis","m":232,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4750026,9.2054454&dirflg=w"},{"n":"Porta Venezia M1","t":"tranvia","e":"🚋","tl":"Tranvía","m":332,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4742213,9.2060684&dirflg=w"},{"n":"Posteggio Taxi Piazza Cincinnato","t":"taxi","e":"🚕","tl":"Parada de taxis","m":335,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4798585,9.2036765&dirflg=w"},{"n":"Piazza Cincinnato","t":"tranvia","e":"🚋","tl":"Tranvía","m":340,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4799129,9.2040191&dirflg=w"},{"n":"Milano Porta Venezia","t":"tren","e":"🚆","tl":"Tren y Passante","m":383,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4757916,9.2087419&dirflg=w"},{"n":"Repubblica","t":"metro","e":"🚇","tl":"Metro","m":558,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4794372,9.1979411&dirflg=w"},{"n":"Milano Repubblica","t":"tren","e":"🚆","tl":"Tren y Passante","m":565,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4803739,9.1988454&dirflg=w"},{"n":"Palestro","t":"metro","e":"🚇","tl":"Metro","m":600,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4716297,9.2021428&dirflg=w"},{"n":"Posteggio taxi Piazza Otto Novembre","t":"taxi","e":"🚕","tl":"Parada de taxis","m":609,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4747988,9.2113219&dirflg=w"},{"n":"Posteggio Taxi Repubblica / Parini","t":"taxi","e":"🚕","tl":"Parada de taxis","m":653,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.477379,9.1957352&dirflg=w"},{"n":"Lima","t":"metro","e":"🚇","tl":"Metro","m":663,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.480357,9.2109589&dirflg=w"},{"n":"Turati","t":"metro","e":"🚇","tl":"Metro","m":769,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4746191,9.1947419&dirflg=w"},{"n":"Posteggio Taxi Piazza Cavour","t":"taxi","e":"🚕","tl":"Parada de taxis","m":818,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4728598,9.1952722&dirflg=w"},{"n":"Centrale FS","t":"metro","e":"🚇","tl":"Metro","m":853,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4845016,9.2032043&dirflg=w"},{"n":"Milano Centrale","t":"tren","e":"🚆","tl":"Tren y Passante","m":1003,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4858786,9.2042617&dirflg=w"},{"n":"Milano Dateo","t":"tren","e":"🚆","tl":"Tren y Passante","m":1487,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4672656,9.2173702&dirflg=w"},{"n":"Milano Porta Garibaldi (superficie)","t":"tren","e":"🚆","tl":"Tren y Passante","m":1561,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4845605,9.1873439&dirflg=w"},{"n":"Milano Porta Garibaldi (passante)","t":"tren","e":"🚆","tl":"Tren y Passante","m":1577,"l":"","g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4840444,9.1866425&dirflg=w"}];
+  var CERCA = [[250,'A menos de 250 metros'],[600,'Entre 250 y 600 metros'],[1e9,'A más de 600 metros']];
+  var ORDEN_T = ['Metro','Tranvía','Parada de taxis','Tren y Passante'];
+  function banda(v){ for(var i=0;i<CERCA.length;i++){ if(v <= CERCA[i][0]) return CERCA[i][1]; } }
+  function pintar(modo){
+    var g = {}, orden = [];
+    PARADAS.forEach(function(r){
+      var k = modo === 'tipo' ? r.tl : banda(r.m);
+      if(!g[k]){ g[k] = []; orden.push(k); }
+      g[k].push(r);
+    });
+    if(modo === 'tipo')  orden.sort(function(a,b){ return ORDEN_T.indexOf(a) - ORDEN_T.indexOf(b); });
+    if(modo === 'cerca') orden.sort(function(a,b){ return CERCA.map(function(x){return x[1];}).indexOf(a) - CERCA.map(function(x){return x[1];}).indexOf(b); });
+    orden.forEach(function(k){ g[k].sort(function(a,b){ return a.m - b.m; }); });
+    var html = '';
+    orden.forEach(function(k){
+      html += '<div class="grupo"><h4>' + k + '<span>' + g[k].length + '</span></h4><div class="rgrid">';
+      g[k].forEach(function(){ html += '<div class="rcard"><a class="rmain" href="#">' +
+        '<span class="rem"></span><span class="rtx"><span class="rn"></span><span class="rmeta"></span></span></a>' +
+        '<span class="rgo" aria-hidden="true">🧭</span></div>'; });
+      html += '</div></div>';
+    });
+    var cont = document.getElementById('tlista');
+    cont.innerHTML = html;
+    var cards = cont.querySelectorAll('.rcard'), i = 0;
+    orden.forEach(function(k){
+      g[k].forEach(function(r){
+        var c = cards[i++];
+        c.querySelector('.rmain').href = r.g;
+        c.querySelector('.rem').textContent = r.e;
+        c.querySelector('.rn').textContent = r.n;
+        c.querySelector('.rmeta').textContent = r.m + ' m' + (modo === 'cerca' ? ' · ' + r.tl : '') + (r.l ? ' · ' + r.l : '');
+      });
+    });
+  }
+  var chips = document.getElementById('tchips');
+  chips.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    Array.prototype.forEach.call(chips.querySelectorAll('button'), function(x){
+      x.setAttribute('aria-pressed', String(x === b));
+    });
+    pintar(b.getAttribute('data-g'));
+  });
+  pintar('tipo');
 })();
 </script>
 
