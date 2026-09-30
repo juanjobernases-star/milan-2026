@@ -1,5 +1,5 @@
 // Cache-first: una vez abierta, la app funciona sin cobertura.
-var CACHE = 'milan-6a6e9d063495';
+var CACHE = 'milan-523e254e6a28';
 var ACTIVOS = ["./", "index.html", "manifest.webmanifest", "icon-180.png", "icon-192.png", "icon-512.png"];
 
 self.addEventListener('install', function(e){
