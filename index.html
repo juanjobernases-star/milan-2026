@@ -23,7 +23,7 @@
     --ink:#1C1815; --ink-2:#6E645C; --ink-3:#79706A;
     --board:#231F1C; --board-ink:#F1ECE6; --board-dim:#A59C94; --board-brass:#C8A882; --board-red:#E4604F;
     --rule:#DCD4CA; --rule-strong:#C4B9AD;
-    --accent:#B03728; --accent-ink:#8E2C20; --accent-soft:#F3DED8;
+    --accent:#B03728; --accent-ink:#8E2C20; --accent-soft:#F3DED8; --on-accent:#FFFFFF;
     --glacier:#2F6480; --glacier-soft:#DEE9EF;
     --pine:#3D6B4A; --pine-soft:#DFEBE2;
     --brass:#8C6C28; --brass-soft:#F2E7CE;
@@ -38,7 +38,7 @@
       --ink:#F1ECE6; --ink-2:#A59C94; --ink-3:#948B84;
       --board:#0C0E11;
       --rule:#2C333B; --rule-strong:#3D4650;
-      --accent:#E4604F; --accent-ink:#F08776; --accent-soft:#3A201B;
+      --accent:#E4604F; --accent-ink:#F08776; --accent-soft:#3A201B; --on-accent:#17191D;
       --glacier:#7DB2CC; --glacier-soft:#1B2A33;
       --pine:#7FB48C; --pine-soft:#1B2A1F;
       --brass:#C9A45A; --brass-soft:#2B2416;
@@ -50,7 +50,7 @@
     --ink:#F1ECE6; --ink-2:#A59C94; --ink-3:#948B84;
     --board:#0C0E11;
     --rule:#2C333B; --rule-strong:#3D4650;
-    --accent:#E4604F; --accent-ink:#F08776; --accent-soft:#3A201B;
+    --accent:#E4604F; --accent-ink:#F08776; --accent-soft:#3A201B; --on-accent:#17191D;
     --glacier:#7DB2CC; --glacier-soft:#1B2A33;
     --pine:#7FB48C; --pine-soft:#1B2A1F;
     --brass:#C9A45A; --brass-soft:#2B2416;
@@ -156,6 +156,34 @@
   .guide:hover{background:var(--surface-2)}
   .guide .g{display:flex; align-items:center; gap:10px; min-width:0}
   .guide .arrow{font-family:var(--display); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
+
+  /* buscador de restaurantes */
+  .chips{display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; margin:0 -20px 16px; padding:0 20px}
+  .chips::-webkit-scrollbar{display:none}
+  .chips button{flex:0 0 auto; font-family:var(--display); text-transform:uppercase; letter-spacing:.11em;
+                font-size:11px; padding:8px 14px; border:1px solid var(--rule); border-radius:999px;
+                background:var(--surface); color:var(--ink-2); cursor:pointer}
+  .chips button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+  .grupo{margin-bottom:20px}
+  .grupo h4{font-family:var(--display); text-transform:uppercase; letter-spacing:.14em; font-size:11px;
+            color:var(--ink-2); margin:0 0 9px; display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .grupo h4 span{font-variant-numeric:tabular-nums; color:var(--rule-strong)}
+  .rgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(228px,1fr)); gap:9px}
+  .rcard{display:flex; align-items:stretch; background:var(--surface); border:1px solid var(--rule);
+         border-radius:11px; overflow:hidden; box-shadow:var(--shadow)}
+  .rcard.mio{border-color:var(--brass)}
+  .rmain{flex:1; min-width:0; display:flex; align-items:center; gap:9px; padding:11px 12px; text-decoration:none; color:var(--ink)}
+  .rmain:hover{background:var(--surface-2)}
+  .rem{font-size:18px; line-height:1; flex:0 0 auto}
+  .rtx{min-width:0; display:flex; flex-direction:column}
+  .rn{font-size:14.5px; font-weight:600; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .rn i{font-style:normal; color:var(--brass)}
+  .rmeta{font-family:var(--display); font-size:10.5px; text-transform:uppercase; letter-spacing:.09em;
+         color:var(--ink-3); margin-top:2px; font-variant-numeric:tabular-nums}
+  .rmeta b{color:var(--accent-ink); font-weight:600}
+  .rgo{flex:0 0 auto; display:flex; align-items:center; padding:0 13px; text-decoration:none;
+       border-left:1px solid var(--rule); font-size:15px; background:var(--surface-2)}
+  .rgo:hover{background:var(--accent-soft)}
 
   /* restaurantes */
   .restos{display:flex; flex-direction:column; gap:14px; margin-top:22px}
@@ -456,6 +484,23 @@
       <p>Y el 25 no abre ninguno: es Navidad. Esa comida sale de la compra del día 24.</p>
     </div>
 
+
+    <h2 style="margin-top:36px">28 sitios alrededor</h2>
+    <p class="sub">Ordénalos como te haga falta. El icono 🧭 abre la ruta a pie desde Via Lecco 5.</p>
+    <div class="chips" id="chips">
+      <button type="button" data-g="cerca" aria-pressed="true">Por cercanía</button>
+      <button type="button" data-g="precio" aria-pressed="false">Por precio</button>
+      <button type="button" data-g="nota" aria-pressed="false">Por puntuación</button>
+      <button type="button" data-g="tipo" aria-pressed="false">Por tipo</button>
+    </div>
+    <div id="rlista"></div>
+    <div class="callout">
+      <div class="h">De dónde salen estos datos</div>
+      <p>Las distancias están calculadas en línea recta desde Via Lecco 5 con coordenadas reales, así que andando siempre será algo más. Puntuaciones, precio medio y enlaces de reserva son de TheFork, consultados hoy. Tus cuatro elegidos van marcados con ★ y no están en TheFork: esos enlazan a TripAdvisor o a la Guía Michelin.</p>
+    </div>
+
+    <h2 style="margin-top:36px">Tus cuatro elegidos</h2>
+    <p class="sub">Con la ficha completa: horarios, qué pedir y qué abre cada día.</p>
     <div class="restos">
       <article class="resto">
         <p class="eyebrow">Desde 1933</p>
@@ -702,6 +747,90 @@
     document.body.removeChild(ta);
     flash(ok ? 'Lista copiada' : 'No se pudo copiar');
   }
+})();
+</script>
+
+<script>
+(function(){
+  var RESTOS = [{"n":"Velavevodetto","c":"Romana","e":"🧀","m":70,"p":24,"v":9.0,"r":569,"u":"https://www.thefork.it/ristorante/velavevodetto-a-porta-venezia-r845024","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Largo%20Fra%20Paolo%20Bellintani%201%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Mosobna","c":"Africana","e":"🍲","m":111,"p":17,"v":9.4,"r":2709,"u":"https://www.thefork.it/ristorante/mosobna-r504745","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Alessandro%20Tadino%209%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Fradiavolo Porta Venezia","c":"Pizzeria","e":"🍕","m":126,"p":19,"v":8.8,"r":1581,"u":"https://www.thefork.it/ristorante/fradiavolo-porta-venezia-r809476","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Lecco%201%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Asmara","c":"Africana","e":"🍲","m":141,"p":20,"v":9.2,"r":229,"u":"https://www.thefork.it/ristorante/asmara-r718631","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Lazzaro%20Palazzi%2017%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Injera","c":"Africana","e":"🍲","m":141,"p":20,"v":9.1,"r":4157,"u":"https://www.thefork.it/ristorante/injera-r282873","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Lazzaro%20Palazzi%207%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Hdmona","c":"Africana","e":"🍲","m":141,"p":20,"v":9.2,"r":3178,"u":"https://www.thefork.it/ristorante/hdmona-r500107","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Lazzaro%20Palazzi%2010%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Dilli Bistrot","c":"India","e":"🍛","m":145,"p":30,"v":9.0,"r":92,"u":"https://www.thefork.it/ristorante/dilli-bistrot-indian-fusion-cuisine-r854659","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Alessandro%20Tadino%201%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Wadi Milano","c":"Libanesa","e":"🧆","m":152,"p":30,"v":9.0,"r":126,"u":"https://www.thefork.it/ristorante/wadi-milano-r861680","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Viale%20Tunisia%2016%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"The Dhaba","c":"India","e":"🍛","m":159,"p":30,"v":9.1,"r":627,"u":"https://www.thefork.it/ristorante/the-dhaba-r645433","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Panfilo%20Castaldi%2022%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"La Società Milano","c":"Italiana","e":"🍝","m":161,"p":45,"v":9.4,"r":2131,"u":"https://www.thefork.it/ristorante/la-societa-milano-r502223","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Panfilo%20Castaldi%2019%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Ristorante Al Sicomoro","c":"Africana","e":"🍲","m":161,"p":21,"v":9.6,"r":106,"u":"https://www.thefork.it/ristorante/ristorante-al-sicomoro-r860688","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Panfilo%20Castaldi%2019%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Pizzium Viale Tunisia","c":"Pizzeria","e":"🍕","m":166,"p":20,"v":8.5,"r":299,"u":"https://www.thefork.it/ristorante/pizzium-milano-viale-tunisia-r685361","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Viale%20Tunisia%206%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Joia","c":"Vegana","e":"🌱","m":175,"p":140,"v":9.7,"r":796,"u":"https://www.thefork.it/ristorante/joia-r50137","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Panfilo%20Castaldi%2018%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Chianta","c":"Italiana","e":"🍝","m":197,"p":37,"v":8.9,"r":94,"u":"https://www.thefork.it/ristorante/chianta-ristorante-r754366","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Corso%20Buenos%20Aires%203%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Braceria La Ciccia","c":"Carne","e":"🥩","m":205,"p":30,"v":8.6,"r":1423,"u":"https://www.thefork.it/ristorante/braceria-la-ciccia-r584253","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Lecco%2015%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Crocca San Gregorio","c":"Pizzeria","e":"🍕","m":261,"p":20,"v":8.5,"r":256,"u":"https://www.thefork.it/ristorante/crocca-milano-via-san-gregorio-r833515","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20San%20Gregorio%2011%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Bomaki Porta Venezia","c":"Fusión","e":"🍣","m":382,"p":30,"v":8.9,"r":360,"u":"https://www.thefork.it/ristorante/bomaki-porta-venezia-milano-r836710","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Melzo%2028%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Caffè Bistrot Andrea Aprea","c":"Italiana","e":"🍝","m":386,"p":45,"v":9.5,"r":232,"u":"https://www.thefork.it/ristorante/caffe-bistrot-andrea-aprea-r725805","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Corso%20Venezia%2052%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Yuanzi 2","c":"China","e":"🥟","m":406,"p":32,"v":9.3,"r":92,"u":"https://www.thefork.it/ristorante/yuanzi-2-r817569","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20San%20Gregorio%206%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Risus","c":"Italiana","e":"🍝","m":415,"p":25,"v":8.9,"r":936,"u":"https://www.thefork.it/ristorante/risus-r809794","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Panfilo%20Castaldi%2020%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"101 Tarantella","c":"Mediterránea","e":"🫒","m":415,"p":18,"v":8.6,"r":1128,"u":"https://www.thefork.it/ristorante/101-tarantella-pizzeria-bistrot-r487699","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Panfilo%20Castaldi%2017%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Fresca Pasta Club","c":"Italiana","e":"🍝","m":487,"p":20,"v":8.9,"r":1802,"u":"https://www.thefork.it/ristorante/fresca-pasta-club-r812803","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Viale%20Piave%2033%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Osteria del Treno","c":"Lombarda","e":"🥘","m":532,"p":null,"v":null,"r":null,"u":"https://www.tripadvisor.es/Restaurant_Review-g187849-d1214759-Reviews-Osteria_del_Treno-Milan_Lombardy.html","pl":"TripAdvisor","t":1,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20San%20Gregorio%2046%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Milano Bistrot","c":"Italiana","e":"🍝","m":636,"p":30,"v":9.0,"r":744,"u":"https://www.thefork.it/ristorante/milano-bistrot-r735474","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Carlo%20Pisacane%2057%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Pasta fresca bistrot","c":"Italiana","e":"🍝","m":673,"p":19,"v":9.5,"r":238,"u":"https://www.thefork.it/ristorante/pasta-fresca-bistrot-r68984","pl":"TheFork","t":0,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Melzo%202%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Da Giannino — L'Angolo d'Abruzzo","c":"Abruzesa","e":"🐑","m":735,"p":null,"v":null,"r":null,"u":"https://guide.michelin.com/es/es/lombardia/milano/restaurant/da-giannino-l-angolo-d-abruzzo","pl":"Michelin","t":1,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Rosolino%20Pilo%2020%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Spontini","c":"Pizza al trancio","e":"🍕","m":908,"p":null,"v":null,"r":null,"u":"https://www.tripadvisor.es/Restaurant_Review-g187849-d1097521-Reviews-Pizzeria_Spontini-Milan_Lombardy.html","pl":"TripAdvisor","t":1,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Gaspare%20Spontini%204%2C%20Milano%2C%20Italy&dirflg=w"},{"n":"Trattoria Milanese","c":"Milanesa","e":"🍚","m":2216,"p":null,"v":null,"r":null,"u":"https://www.tripadvisor.es/Restaurant_Review-g187849-d4409934-Reviews-Trattoria_Milanese_Dal_1933-Milan_Lombardy.html","pl":"TripAdvisor","t":1,"g":"http://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=Via%20Santa%20Marta%2011%2C%20Milano%2C%20Italy&dirflg=w"}];
+  var CERCA = [[200,'A menos de 200 metros'],[500,'Entre 200 y 500 metros'],[1000,'Entre 500 metros y 1 km'],[1e9,'A más de 1 km']];
+  var PRECIO = [[20,'Hasta 20 €'],[30,'Entre 21 y 30 €'],[45,'Entre 31 y 45 €'],[1e9,'Más de 45 €']];
+  var NOTA = [[9.5,'Sobresalientes · 9,5 y más'],[9.0,'Muy buenos · de 9,0 a 9,4'],[0,'Notables · por debajo de 9,0']];
+
+  function banda(tabla, v){ for(var i=0;i<tabla.length;i++){ if(v <= tabla[i][0]) return tabla[i][1]; } }
+  function bandaNota(v){ for(var i=0;i<NOTA.length;i++){ if(v >= NOTA[i][0]) return NOTA[i][1]; } }
+
+  function agrupar(modo){
+    var g = {}, orden = [];
+    RESTOS.forEach(function(r){
+      var k;
+      if(modo === 'cerca')       k = banda(CERCA, r.m);
+      else if(modo === 'precio') k = r.p ? banda(PRECIO, r.p) : 'Sin precio publicado';
+      else if(modo === 'nota')   k = r.v ? bandaNota(r.v) : 'Sin puntuación en TheFork';
+      else                       k = r.c;
+      if(!g[k]){ g[k] = []; orden.push(k); }
+      g[k].push(r);
+    });
+    function rango(tabla){ return tabla.map(function(x){ return x[1]; }); }
+    if(modo === 'cerca' || modo === 'precio' || modo === 'nota'){
+      var ref = modo === 'cerca' ? rango(CERCA) : modo === 'precio' ? rango(PRECIO) : rango(NOTA);
+      orden.sort(function(a,b){
+        var ia = ref.indexOf(a), ib = ref.indexOf(b);
+        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);   // los "sin dato", al final
+      });
+    }
+    if(modo === 'tipo') orden.sort(function(a,b){ return g[b].length - g[a].length || a.localeCompare(b,'es'); });
+    orden.forEach(function(k){
+      g[k].sort(function(a,b){
+        if(modo === 'precio') return (a.p||999) - (b.p||999);
+        if(modo === 'nota')   return (b.v||0) - (a.v||0);
+        return a.m - b.m;
+      });
+    });
+    return {g:g, orden:orden};
+  }
+
+  function meta(r, modo){
+    var t = [];
+    t.push(r.m + ' m');
+    if(r.p) t.push(r.p + ' €');
+    if(r.v) t.push(r.v.toFixed(1).replace('.', ',') + (r.r ? ' (' + r.r + ')' : ''));
+    else t.push(r.c);
+    return t.join(' · ');
+  }
+
+  var cont = document.getElementById('rlista');
+  function pintar(modo){
+    var a = agrupar(modo), html = '';
+    a.orden.forEach(function(k){
+      var lista = a.g[k];
+      html += '<div class="grupo"><h4>' + k + '<span>' + lista.length + '</span></h4><div class="rgrid">';
+      lista.forEach(function(r){
+        html += '<div class="rcard' + (r.t ? ' mio' : '') + '">' +
+                  '<a class="rmain" href="' + r.u + '" rel="noreferrer">' +
+                    '<span class="rem">' + r.e + '</span>' +
+                    '<span class="rtx">' +
+                      '<span class="rn">' + (r.t ? '<i>★</i> ' : '') + r.n + '</span>' +
+                      '<span class="rmeta">' + meta(r, modo) + '</span>' +
+                    '</span>' +
+                  '</a>' +
+                  '<a class="rgo" href="' + r.g + '" aria-label="Cómo llegar a ' + r.n + '">🧭</a>' +
+                '</div>';
+      });
+      html += '</div></div>';
+    });
+    cont.innerHTML = html;
+  }
+
+  var chips = document.getElementById('chips');
+  chips.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    Array.prototype.forEach.call(chips.querySelectorAll('button'), function(x){
+      x.setAttribute('aria-pressed', String(x === b));
+    });
+    pintar(b.getAttribute('data-g'));
+  });
+  pintar('cerca');
 })();
 </script>
 
