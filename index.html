@@ -24,7 +24,7 @@
     --surface:#FFF7EC; --surface-2:#EAF6F1;
     --ink:#5B4636; --ink-2:#6B5642; --ink-3:#7A6858;
     --titulo:#2F6F65;
-    --board:#2F6F65; --board-ink:#FFF7EC; --board-dim:#A9D6CC; --board-brass:#F0C987; --board-red:#FFD9A0;
+    --board-a:#2F6F65; --board-b:#1F4A43; --board-ink:#FFF7EC; --board-dim:#CDEEE2; --board-brass:#F8E2BE; --board-red:#FFD9A0;
     --rule:#E7DCCA; --rule-strong:#D3C5AE;
     --accent:#2F6F65; --accent-ink:#1F3F39; --accent-soft:#D9F0E7; --on-accent:#FFF7EC;
     --glacier:#356184; --glacier-soft:#DCEAF3;
@@ -42,7 +42,7 @@
       --surface:#1D2C28; --surface-2:#172522;
       --ink:#EADFCF; --ink-2:#BCAD98; --ink-3:#A2937F;
       --titulo:#8FD3C4;
-      --board:#0F211D; --board-ink:#FFF7EC; --board-dim:#9CC4BA; --board-brass:#F0C987; --board-red:#FFD9A0;
+      --board-a:#1E473F; --board-b:#0F2420; --board-ink:#FFF7EC; --board-dim:#CDEEE2; --board-brass:#F8E2BE; --board-red:#FFD9A0;
       --rule:#2B3C37; --rule-strong:#3C514B;
       --accent:#6FC5B4; --accent-ink:#9EDDCE; --accent-soft:#1D3A34; --on-accent:#10211D;
       --glacier:#8FBEDC; --glacier-soft:#1A2A33;
@@ -56,7 +56,7 @@
     --surface:#1D2C28; --surface-2:#172522;
     --ink:#EADFCF; --ink-2:#BCAD98; --ink-3:#A2937F;
     --titulo:#8FD3C4;
-    --board:#0F211D; --board-ink:#FFF7EC; --board-dim:#9CC4BA; --board-brass:#F0C987; --board-red:#FFD9A0;
+    --board-a:#1E473F; --board-b:#0F2420; --board-ink:#FFF7EC; --board-dim:#CDEEE2; --board-brass:#F8E2BE; --board-red:#FFD9A0;
     --rule:#2B3C37; --rule-strong:#3C514B;
     --accent:#6FC5B4; --accent-ink:#9EDDCE; --accent-soft:#1D3A34; --on-accent:#10211D;
     --glacier:#8FBEDC; --glacier-soft:#1A2A33;
@@ -67,7 +67,7 @@
 
   *{box-sizing:border-box}
   html{scroll-behavior:smooth; scroll-padding-top:104px}
-  .subsec{scroll-margin-top:104px}
+  .subsec, .stop{scroll-margin-top:104px}
   body{
     margin:0; background:var(--ground); color:var(--ink);
     font-family:var(--ui); font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
@@ -76,6 +76,22 @@
 
 
   /* ---------- componentes de app ---------- */
+  .siguiente{
+    display:flex; align-items:center; gap:12px; margin:14px 0 0; padding:13px 15px;
+    border-radius:var(--r-card); text-decoration:none; font-family:var(--ui);
+    background:linear-gradient(135deg, var(--board-a), var(--board-b)); color:var(--board-ink);
+  }
+  .siguiente[hidden]{display:none}
+  .siguiente .ic{flex:none; width:38px; height:38px; border-radius:50%; font-size:17px;
+                 background:rgba(255,247,236,.18); display:flex; align-items:center; justify-content:center}
+  .siguiente .bd{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
+  .siguiente .k{font-family:var(--display); font-size:9.5px; font-weight:700; text-transform:uppercase;
+                letter-spacing:.16em; color:var(--board-brass)}
+  .siguiente .t{font-size:15.5px; font-weight:700; line-height:1.25; letter-spacing:-.01em}
+  .siguiente .m{font-size:12.5px; color:var(--board-dim); font-variant-numeric:tabular-nums}
+  .siguiente .ir{flex:none; font-size:21px; line-height:1; color:var(--board-dim)}
+  .siguiente:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+
   .tiles{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin:12px 0 4px}
   .tile{background:var(--surface); border:1px solid var(--rule); border-radius:var(--r-inner); padding:12px 14px}
   .tile .k{font-family:var(--display); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--ink-3)}
@@ -189,7 +205,7 @@
   }
 
   /* panel de salidas */
-  .board{background:linear-gradient(135deg,#2F6F65,#4FA79A); color:var(--board-ink); border-radius:var(--r-card); margin:14px 0 0; padding:17px 18px 16px}
+  .board{background:linear-gradient(135deg, var(--board-a), var(--board-b)); color:var(--board-ink); border-radius:var(--r-card); margin:14px 0 0; padding:17px 18px 16px}
   .board .kicker{font-family:var(--display); text-transform:uppercase; letter-spacing:.18em; font-size:10px; color:var(--board-brass); margin:0 0 7px}
   .board .t{font-family:var(--display); font-weight:800; font-size:27px; line-height:1.05; margin:0; letter-spacing:-.02em}
   .board .t .it{color:var(--board-red)}
@@ -217,6 +233,9 @@
   .line{position:relative; padding-left:34px}
   .line::before{content:""; position:absolute; left:8px; top:14px; bottom:24px; width:2px; background:linear-gradient(var(--rule-strong), var(--rule))}
   .day{font-family:var(--display); text-transform:uppercase; letter-spacing:.16em; font-size:12px; color:var(--ink-2); margin:24px 0 10px}
+  .day.hoy{color:var(--accent-ink)}
+  .day.hoy::after{content:"hoy"; margin-left:9px; font-size:9.5px; letter-spacing:.14em; font-weight:700;
+                  color:var(--on-accent); background:var(--accent); padding:3px 8px 2px; border-radius:var(--r-pill)}
   .day:first-child{margin-top:0}
   .day em{font-style:normal; color:var(--ink-3)}
   .stop{position:relative; margin-bottom:9px}
@@ -374,7 +393,7 @@
   <header class="appbar">
     <div class="abtop">
       <span class="abmarca">Milán en Navidad · 24–27 dic 2026</span>
-      <span class="abmeta"><b id="cuenta">—</b> días</span>
+      <span class="abmeta" id="pildora"><b>—</b> días</span>
     </div>
     <div class="abrow">
       <button class="abatras" id="atras" type="button" hidden aria-label="Volver">
@@ -396,8 +415,17 @@
       <span>Base <b>Via Lecco 5</b></span>
     </div>
   </header>
+  <a class="siguiente" id="siguiente" href="#" hidden>
+    <span class="ic" aria-hidden="true">📍</span>
+    <span class="bd">
+      <span class="k" id="sig-k">Lo siguiente</span>
+      <span class="t" id="sig-t"></span>
+      <span class="m" id="sig-m"></span>
+    </span>
+    <span class="ir" aria-hidden="true">›</span>
+  </a>
     <div class="tiles">
-      <div class="tile hot"><div class="k">Salida</div><div class="v" id="t-dias">—</div><div class="u">días · 24 dic, 06:45</div></div>
+      <div class="tile hot"><div class="k" id="t-k">Salida</div><div class="v" id="t-v">—</div><div class="u" id="t-u">días · 24 dic, 06:45</div></div>
       <div class="tile"><div class="k">Duración</div><div class="v">4</div><div class="u">días · 3 noches · 3 personas</div></div>
       <div class="tile"><div class="k">Reservado</div><div class="v">4<span style="font-size:13px; color:var(--ink-3)">/5</span></div><div class="u">falta el bus a Bergamo</div></div>
       <div class="tile"><div class="k">Pagado</div><div class="v">720<span style="font-size:13px; color:var(--ink-3)"> €</span></div><div class="u">sin piso ni vuelos</div></div>
@@ -422,8 +450,8 @@
     <p class="sub">Dos madrugones seguidos, el 24 y el 26. El 25 no hay nada que correr, y menos mal.</p>
     <div class="line">
 
-      <p class="day">Jueves 24 <em>· llegada y Nochebuena</em></p>
-      <div class="stop key">
+      <p class="day" data-f="2026-12-24">Jueves 24 <em>· llegada y Nochebuena</em></p>
+      <div class="stop key" data-h="04:15">
         <div class="card">
           <span class="time">04:15 → 09:00</span>
           <h3>✈️ Madrid → Milán Malpensa</h3>
@@ -431,14 +459,14 @@
           <span class="pill ok">Reservado</span>
         </div>
       </div>
-      <div class="stop">
+      <div class="stop" data-h="09:30">
         <div class="card">
           <span class="time">09:30 → 11:00</span>
           <h3>🚆 Malpensa Express y apartamento</h3>
           <p>Tren directo a Milano Centrale, unos 50 minutos, sale cada media hora. De Centrale a Via Lecco 5 hay un cuarto de hora andando, en Porta Venezia.</p>
         </div>
       </div>
-      <div class="stop">
+      <div class="stop" data-h="15:00">
         <div class="card">
           <span class="time">2 h 45 min</span>
           <h3>🚶 Free tour por Milán</h3>
@@ -446,7 +474,7 @@
           <span class="pill ok">Reservado</span>
         </div>
       </div>
-      <div class="stop key">
+      <div class="stop key" data-h="18:00">
         <div class="card">
           <span class="time">Antes de que cierren</span>
           <h3>🛒 La compra del 25</h3>
@@ -454,7 +482,7 @@
           <span class="pill open">Sin esto, el 25 se complica</span>
         </div>
       </div>
-      <div class="stop">
+      <div class="stop" data-h="21:00">
         <div class="card">
           <span class="time">Noche</span>
           <h3>🍝 Nochebuena</h3>
@@ -462,8 +490,8 @@
         </div>
       </div>
 
-      <p class="day">Viernes 25 <em>· Navidad, día libre</em></p>
-      <div class="stop">
+      <p class="day" data-f="2026-12-25">Viernes 25 <em>· Navidad, día libre</em></p>
+      <div class="stop" data-h="10:00">
         <div class="card">
           <span class="time">Todo el día</span>
           <h3>🎄 Sin plan, a propósito</h3>
@@ -472,8 +500,8 @@
         </div>
       </div>
 
-      <p class="day">Sábado 26 <em>· los Alpes</em></p>
-      <div class="stop key">
+      <p class="day" data-f="2026-12-26">Sábado 26 <em>· los Alpes</em></p>
+      <div class="stop key" data-h="07:00">
         <div class="card">
           <span class="time">07–08 h → 19–20 h · 12 h 30 min</span>
           <h3>🏔️ Alpes suizos y St. Moritz en tren</h3>
@@ -482,8 +510,8 @@
         </div>
       </div>
 
-      <p class="day">Domingo 27 <em>· medio día y vuelta</em></p>
-      <div class="stop">
+      <p class="day" data-f="2026-12-27">Domingo 27 <em>· medio día y vuelta</em></p>
+      <div class="stop" data-h="09:00">
         <div class="card">
           <span class="time">09:00 → 15:00</span>
           <h3>⛪ Duomo y terrazas</h3>
@@ -491,7 +519,7 @@
           <span class="pill info">Entradas · 20–50 €</span>
         </div>
       </div>
-      <div class="stop key">
+      <div class="stop key" data-h="15:15">
         <div class="card">
           <span class="time">15:15 → 17:10</span>
           <h3>🚌 Centrale → Bergamo Orio al Serio</h3>
@@ -499,7 +527,7 @@
           <span class="pill open">Bus por reservar</span>
         </div>
       </div>
-      <div class="stop">
+      <div class="stop" data-h="19:10">
         <div class="card">
           <span class="time">19:10 → 21:30</span>
           <h3>✈️ Bergamo → Madrid</h3>
@@ -952,10 +980,71 @@
 </div>
 <script>
 (function(){
-  var salida = new Date(2026,11,24,6,45,0);
-  var dias = Math.ceil((salida - new Date())/86400000);
-  document.getElementById('cuenta').textContent = dias > 0 ? dias : '0';
-  var td = document.getElementById('t-dias'); if(td) td.textContent = dias > 0 ? dias : '0';
+  // ---- la app sabe si el viaje esta por venir, en marcha o terminado ----
+  var PARTIDA  = new Date(2026,11,24,6,45,0);
+  var PRIMERO  = new Date(2026,11,24,0,0,0);
+  var ATERRIZA = new Date(2026,11,27,21,30,0);
+
+  // data-h solo ordena las paradas: lo que se muestra siempre es el texto
+  // real de la tarjeta, nunca esta hora
+  var paradas = [], dia = null;
+  Array.prototype.forEach.call(document.querySelectorAll('#dias .day, #dias .stop'), function(el){
+    if(el.classList.contains('day')){ dia = el; return; }
+    var f = dia && dia.getAttribute('data-f'), h = el.getAttribute('data-h');
+    if(!f || !h) return;
+    var d = f.split('-'), q = h.split(':');
+    if(!el.id) el.id = 'p' + paradas.length;
+    paradas.push({cuando: new Date(+d[0], d[1] - 1, +d[2], +q[0], +q[1]), dia: dia, el: el});
+  });
+
+  function txt(el, sel){ var x = el.querySelector(sel); return x ? x.textContent.trim() : ''; }
+  function iso(f){
+    return f.getFullYear() + '-' + ('0' + (f.getMonth() + 1)).slice(-2) + '-' + ('0' + f.getDate()).slice(-2);
+  }
+
+  function pintar(){
+    var ahora = new Date();
+    var pild = document.getElementById('pildora');
+    var tk = document.getElementById('t-k'), tv = document.getElementById('t-v'), tu = document.getElementById('t-u');
+
+    if(ahora < PARTIDA){
+      var n = Math.ceil((PARTIDA - ahora) / 86400000);
+      pild.innerHTML = '<b>' + n + '</b> ' + (n === 1 ? 'día' : 'días');
+      tk.textContent = 'Salida';
+      tv.textContent = n;
+      tu.textContent = (n === 1 ? 'día' : 'días') + ' · 24 dic, 06:45';
+    } else if(ahora <= ATERRIZA){
+      var k = Math.min(4, Math.max(1, Math.floor((ahora - PRIMERO) / 86400000) + 1));
+      pild.innerHTML = 'día <b>' + k + '</b> de 4';
+      tk.textContent = 'En Milán';
+      tv.textContent = k;
+      tu.textContent = 'día de 4 · se vuelve el 27';
+    } else {
+      pild.innerHTML = 'viaje <b>hecho</b>';
+      tk.textContent = 'Viaje';
+      tv.textContent = '✓';
+      tu.textContent = 'del 24 al 27 de diciembre de 2026';
+    }
+
+    var hoy = iso(ahora);
+    Array.prototype.forEach.call(document.querySelectorAll('#dias .day'), function(d){
+      d.classList.toggle('hoy', d.getAttribute('data-f') === hoy);
+    });
+
+    var sig = null;
+    for(var i = 0; i < paradas.length; i++){ if(paradas[i].cuando >= ahora){ sig = paradas[i]; break; } }
+    var b = document.getElementById('siguiente');
+    if(!sig){ b.hidden = true; return; }
+    b.hidden = false;
+    b.href = '#' + sig.el.id;
+    document.getElementById('sig-k').textContent = ahora < PARTIDA ? 'Empieza así' : 'Lo siguiente';
+    document.getElementById('sig-t').textContent = txt(sig.el, 'h3');
+    document.getElementById('sig-m').textContent =
+      sig.dia.firstChild.textContent.trim() + ' · ' + txt(sig.el, '.time');
+  }
+
+  pintar();
+  setInterval(pintar, 60000);
 
   var P = [
     ['\uD83C\uDFE0','Apartamento','Via Lecco 5','Via Lecco 5, 20124 Milano, Italy','w'],
