@@ -131,10 +131,14 @@
           border-radius:var(--r-pill); padding:4px 11px; flex:none; white-space:nowrap; font-variant-numeric:tabular-nums}
   .abmeta b{font-weight:700}
   .abrow{display:flex; align-items:center; gap:6px; min-height:38px}
-  .abatras{border:0; background:none; padding:4px 4px 4px 0; margin-left:-4px; cursor:pointer;
-           color:var(--titulo); display:flex; align-items:center; flex:none}
-  .abatras[hidden]{display:none}
-  .abtitulo{font-family:var(--display); font-size:27px; font-weight:800; line-height:1.14; letter-spacing:-.015em;
+  .abnav{display:flex; align-items:center; gap:1px; flex:none; margin-left:-7px}
+  .abb{width:32px; height:32px; flex:none; border:0; background:none; border-radius:50%; padding:0;
+       cursor:pointer; color:var(--titulo); display:flex; align-items:center; justify-content:center;
+       -webkit-tap-highlight-color:transparent; transition:background .12s}
+  .abb:disabled{color:var(--ink-3); opacity:.4; cursor:default}
+  .abb:not(:disabled):hover, .abb:not(:disabled):active{background:var(--accent-soft)}
+  .abb:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+  .abtitulo{font-family:var(--display); font-size:25px; font-weight:800; line-height:1.14; letter-spacing:-.015em;
             margin:0; color:var(--titulo); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .abicono{width:38px; height:38px; border-radius:50%; background:var(--accent-soft); flex:none; margin-left:auto;
            display:flex; align-items:center; justify-content:center}
@@ -327,6 +331,7 @@
 
   /* restaurantes */
   .restos{display:flex; flex-direction:column; gap:14px; margin-top:22px}
+  .fichas{display:flex; flex-direction:column; gap:10px}
   .resto{background:var(--surface); border:1px solid var(--rule); border-radius:var(--r-card); padding:15px 16px}
   .resto .eyebrow{font-family:var(--display); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px;
                   color:var(--brass); margin:0 0 5px}
@@ -398,9 +403,17 @@
       <span class="abmeta" id="pildora"><b>—</b> días</span>
     </div>
     <div class="abrow">
-      <button class="abatras" id="atras" type="button" hidden aria-label="Volver">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+      <div class="abnav">
+        <button class="abb" id="atras" type="button" aria-label="Atrás" disabled>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="abb" id="alante" type="button" aria-label="Adelante" disabled>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="abb" id="inicio" type="button" aria-label="Ir al inicio" disabled>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.6 10.6 12 3.8l8.4 6.8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.8 9.5V19a1 1 0 0 0 1 1h10.4a1 1 0 0 0 1-1V9.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
       <h1 class="abtitulo" id="abtitulo">Resumen</h1>
       <span class="abicono" id="abicono"><img id="abimg" alt="" width="28" height="28"></span>
     </div>
@@ -867,8 +880,8 @@
     <div class="subnav">
       <a href="#t-paradas">Desde tu portal</a>
       <a href="#t-billetes">Billetes</a>
+      <a href="#t-reservas">Reservas</a>
       <a href="#t-trayectos">Los trayectos</a>
-      <a href="#t-taxi">Taxi y Uber</a>
     </div>
 
     <div class="subsec" id="t-paradas">
@@ -885,29 +898,101 @@
     </details>
     </div>
 
+
     <div class="subsec" id="t-billetes">
       <h3>Billetes</h3>
-      <p class="lead">Un cambio importante este año: en Milán ya no hay billetes de papel.</p>
+      <p class="lead">Dos cambios respecto a la última vez que estuvisteis en Italia: ya no hay billete de papel, y el pequeño no paga.</p>
       <div class="alert">
-        <div class="h">Desde enero de 2026</div>
+        <div class="h">Desde el 1 de enero de 2026</div>
         <h3>Se paga con la tarjeta, no con billete</h3>
-        <p>ATM retiró el billete de papel. Se entra apoyando una tarjeta bancaria contactless en el torno, o con el billete digital de su app. Cada persona necesita su propia tarjeta: no valen tres viajes con la misma.</p>
-        <p>Diego tendrá que llevar una, o comprarle el billete digital en la app.</p>
+        <p>ATM retiró el billete de cartón. Se entra apoyando una tarjeta bancaria contactless o el móvil en el torno, al entrar y al salir, y se cobra la misma tarifa que el billete ordinario. La alternativa es RicaricaMi, una tarjeta electrónica anónima y gratuita que se recarga en las máquinas del metro, en estancos y en los ATM Point.</p>
+        <p><b>Los menores de 14 años viajan gratis</b> en toda la red de ATM y en los tramos de Trenord dentro del área de Milán. No hay que comprarle nada: basta con poder enseñar un documento con su fecha de nacimiento si hay un control. Sin la tessera Under 14 tiene que pasar por la puerta de al lado de la cabina del operador, no por el torno.</p>
       </div>
       <div class="tablewrap" style="margin-top:16px">
         <table>
-          <thead><tr><th>Título</th><th style="text-align:right">Precio</th></tr></thead>
+          <thead><tr><th>Título · zona urbana Mi1-Mi3</th><th style="text-align:right">Precio</th></tr></thead>
           <tbody>
             <tr><td>Billete sencillo<span class="s">90 minutos, transbordos incluidos, un solo viaje en metro</span></td><td class="n">2,20 €</td></tr>
-            <tr><td>Carnet de 10 viajes<span class="s">menos de 2 € por viaje</span></td><td class="n">19,50 €</td></tr>
+            <tr><td>Carnet de 10 viajes<span class="s">1,95 € por viaje, pero no lo pueden usar dos personas a la vez</span></td><td class="n">19,50 €</td></tr>
             <tr><td>Diario, 24 horas</td><td class="n">7,60 €</td></tr>
-            <tr><td>Tres días<span class="s">cubre del 24 al 27 si se activa bien</span></td><td class="n">13,00 €</td></tr>
+            <tr><td>Tres días<span class="s">tres días naturales desde la primera validación</span></td><td class="n">15,50 €</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="note" style="margin-top:14px">El de tres días sale a cuenta a partir del sexto viaje por persona. Con el apartamento tan céntrico probablemente andéis más de lo que penséis, así que mirad el primer día cuánto usáis el metro antes de comprar tres abonos. Ojo: estas tarifas son de la zona urbana Mi1-Mi3 y <b>no cubren ni Malpensa ni Bergamo</b>.</p>
+      <p class="note" style="margin-top:14px">Tarifas oficiales de ATM, enero de 2026. El abono de tres días sale a cuenta <b>a partir del octavo viaje</b> por persona: dos abonos son 31 €, y con el apartamento tan céntrico es fácil que andéis más de lo que penséis. Mirad el primer día cuánto metro usáis antes de comprarlos. Y ojo: estas tarifas son de la zona urbana Mi1-Mi3 y <b>no cubren ni Malpensa ni Bergamo</b>, que van aparte.</p>
     </div>
 
+    <div class="subsec" id="t-reservas">
+      <h3>Reservas</h3>
+      <p class="lead">Lo que hay que sacar fuera de la red urbana y a quién se llama. Precios publicados por cada operador en 2026; confirmadlos al comprar.</p>
+
+      <div class="fichas">
+
+      <article class="resto">
+        <p class="eyebrow">24 de diciembre · del avión a casa</p>
+        <h3>Malpensa Express</h3>
+        <p class="desc">Tren directo del aeropuerto a Milano Centrale, unos 50 minutos y sale cada media hora. Es la forma sensata de llegar con maletas un 24 por la mañana.</p>
+        <dl class="facts">
+          <div><dt>Precio</dt><dd>15 € por adulto y 7,50 € de 4 a 13 años. Para vosotros tres, <b>37,50 €</b> el trayecto.</dd></div>
+          <div><dt>Ojo</dt><dd>El billete Famiglia de 36 € es para 2 adultos y <b>2</b> niños, así que con un solo niño no os sale: tres billetes sueltos salen más baratos que forzar el de familia.</dd></div>
+          <div><dt>Dónde</dt><dd>Web de Malpensa Express, app Trenord, o máquina en el andén del aeropuerto</dd></div>
+        </dl>
+        <div class="actions">
+          <a href="https://www.malpensaexpress.it/es/" rel="noreferrer">🚆 Comprar</a>
+          <a href="https://www.trenord.it/es/" rel="noreferrer">📱 Trenord</a>
+        </div>
+      </article>
+
+      <article class="resto">
+        <p class="eyebrow">27 de diciembre · el que no podéis fallar</p>
+        <h3>Bus de Centrale a Bergamo</h3>
+        <p class="desc">No hay tren al aeropuerto de Orio al Serio: se va en bus desde Milano Centrale y tarda unos 50 minutos. Con el vuelo a las 19:10 hay que coger uno sobre las 16:00.</p>
+        <dl class="facts">
+          <div><dt>Operadores</dt><dd>Terravision, Orio Shuttle (Autostradale) y FlixBus. Salen cada 20 o 30 minutos desde la Piazza Luigi di Savoia, al lado de Centrale.</dd></div>
+          <div><dt>Precio</dt><dd>Entre 5 y 12 € por persona según operador y antelación.</dd></div>
+          <div><dt>Compradlo antes</dt><dd>Es el único billete del viaje que no conviene dejar para el día: el 27 de diciembre vuelve mucha gente y los primeros buses de la tarde se llenan.</dd></div>
+        </dl>
+        <div class="actions">
+          <a href="https://www.terravision.eu/es/traslado_aeropuerto/bus-aeropuerto-bergamo-milan/" rel="noreferrer">🚌 Terravision</a>
+          <a href="https://www.orioshuttle.com/" rel="noreferrer">🚌 Orio Shuttle</a>
+          <a href="https://www.flixbus.es/autobus/milan-aeropuerto-bergamo-orio-al-serio" rel="noreferrer">🚌 FlixBus</a>
+        </div>
+      </article>
+
+      <article class="resto">
+        <p class="eyebrow">A cualquier hora</p>
+        <h3>Taxi</h3>
+        <p class="desc">Tenéis dos paradas a menos de 240 metros del portal, así que muchas veces no hará falta llamar. Si llamáis, estas son las dos centrales grandes de Milán, las dos con app propia y las dos 24 horas.</p>
+        <dl class="facts">
+          <div><dt>Taxiblu</dt><dd>02 4040 · la mayor de Milán, más de 1.800 coches</dd></div>
+          <div><dt>Radiotaxi</dt><dd>02 6969 · unos 1.400 coches, también reserva por WhatsApp al mismo número</dd></div>
+          <div><dt>Apps</dt><dd>appTaxi y FreeNow llaman a taxi oficial con tarifa de taxímetro y pago con tarjeta</dd></div>
+          <div><dt>Con antelación</dt><dd>Para el 27 por la mañana, si acabáis cogiendo taxi al Centrale, se puede reservar la víspera dando hora y dirección.</dd></div>
+        </dl>
+        <div class="actions">
+          <a href="tel:+39024040">📞 Llamar al 02 4040</a>
+          <a href="tel:+39026969">📞 Llamar al 02 6969</a>
+          <a href="https://taxiblu.it/es/" rel="noreferrer">🚕 Taxiblu</a>
+        </div>
+      </article>
+
+      <article class="resto">
+        <p class="eyebrow">Alternativa</p>
+        <h3>Uber</h3>
+        <p class="desc">En Italia Uber no lleva coches de particulares: todo lo que pidáis por la app lo conduce un profesional con licencia NCC, o es directamente un taxi oficial. Por eso suele costar más que en España.</p>
+        <dl class="facts">
+          <div><dt>Qué hay en Milán</dt><dd>Uber Taxi llama a un taxi de Milán desde la app; Uber Black es la gama alta; Uber Comfort llegó en julio de 2026 y sale hasta un 30 % por debajo de Black; Uber Van cabe más gente y Uber Green es eléctrico.</dd></div>
+          <div><dt>Reservar</dt><dd>La función Reserve permite dejar la carrera pedida con antelación, que es lo que interesa para el 27.</dd></div>
+          <div><dt>Comparad</dt><dd>Para tres personas con equipaje de mano, mirad Uber Van y el taxi normal antes de pedir: en Milán el taxi de parada suele ganar.</dd></div>
+          <div><dt>Y Bolt</dt><dd>La estonia Bolt abrió en Milán el 10 de junio de 2026 con el mismo modelo de NCC y dice tener tarifas por debajo de la media. Si vais a pedir coche, merece la pena comparar las dos apps.</dd></div>
+        </dl>
+        <div class="actions">
+          <a href="https://m.uber.com/looking" rel="noreferrer">🚗 Abrir Uber</a>
+        </div>
+      </article>
+
+      </div>
+    </div>
     <div class="subsec" id="t-trayectos">
       <h3>Los trayectos</h3>
       <p class="lead">Los cuatro desplazamientos que sí hay que resolver, con lo que cuestan para los tres.</p>
@@ -939,26 +1024,6 @@
       </div>
     </div>
 
-    <div class="subsec" id="t-taxi">
-      <h3>Taxi y Uber</h3>
-      <p class="lead">En Italia esto no funciona como en Madrid, y conviene saberlo antes de necesitarlo un domingo a las tres de la tarde.</p>
-      <div class="alert">
-        <div class="h">Lo primero que hay que entender</div>
-        <h3>Uber en Italia no es UberX</h3>
-        <p>La ley italiana solo permite taxi con licencia o vehículos NCC con conductor. Uber opera aquí como <b>Uber Black</b>, categoría NCC: funciona bien, pero cuesta bastante más que un Uber en España.</p>
-        <p>Los NCC además <b>no se pueden parar por la calle</b> ni esperan en las plazas: van siempre reservados con antelación.</p>
-      </div>
-      <div class="rows" style="margin-top:16px">
-        <div class="row"><span class="ic">🚕</span><span class="bd"><span class="t">Taxi en parada</span><span class="d">Lo más directo y lo más barato. Tenéis dos paradas a 221 y 232 m del portal. En Milán el taxi no se para con la mano: o se coge en parada o se pide.</span></span><span class="pr">—</span></div>
-        <div class="row"><span class="ic">📱</span><span class="bd"><span class="t">FreeNow · itTaxi · Wetaxi</span><span class="d">Apps que llaman a taxis con licencia, con taxímetro normal. Es lo que usa la gente de allí y lo que yo instalaría antes de salir.</span></span><span class="pr">Taxi</span></div>
-        <div class="row"><span class="ic">🖤</span><span class="bd"><span class="t">Uber Black</span><span class="d">Coche con conductor, precio cerrado antes de subir. Cómodo con equipaje o de noche, pero es la opción cara.</span></span><span class="pr">NCC</span></div>
-        <div class="row"><span class="ic">⚡</span><span class="bd"><span class="t">Bolt</span><span class="d">Llegó a Milán en junio de 2026 con el mismo modelo, y sus carreras salen hasta un tercio más baratas que las de Uber. Merece la pena comparar.</span></span><span class="pr">NCC</span></div>
-      </div>
-      <details class="nota">
-      <summary><span class="ic">ℹ️</span>Cuándo va a hacer falta de verdad</summary>
-      <div><p>Casi nunca: el apartamento está en el centro y todo cae a pie o en metro. Los dos momentos posibles son la madrugada del 24, si no queréis andar hasta Centrale con las mochilas, y la tarde del 27 si se complica la salida hacia Bergamo. En Navidad hay menos taxis en circulación, así que pedidlo con margen.</p></div>
-    </details>
-    </div>
   </section>
     </div>
 
@@ -1478,7 +1543,9 @@
   var titulo = document.getElementById('abtitulo');
   var imgtit = document.getElementById('abimg');
   var marco  = document.getElementById('abicono');
-  var atras  = document.getElementById('atras');
+  var bAtras = document.getElementById('atras');
+  var bAlante= document.getElementById('alante');
+  var bInicio= document.getElementById('inicio');
 
   var ICONOS = {};
   Array.prototype.forEach.call(document.querySelectorAll('[data-v] img'), function(im){
@@ -1486,16 +1553,26 @@
     if(p) ICONOS[p.getAttribute('data-v')] = im.getAttribute('src');
   });
 
-  var scrolls = {}, actual = null, ultima = 'resumen';
+  var scrolls = {}, actual = null;
+
+  // El historial del navegador es el unico que manda: cada salto escribe el
+  // hash, que empuja una entrada. Asi los botones de abajo y el gesto de
+  // deslizar desde el borde del movil cuentan la misma historia.
+  var pila = [], pos = 0;
 
   function normaliza(v){
     if(VIEJAS[v]) v = VIEJAS[v];
     return VISTAS.indexOf(v) < 0 ? 'resumen' : v;
   }
 
-  function ir(v, empujar){
-    cerrar(false);                 // tambien si el salto viene del hash o del historial
-    v = normaliza(v);
+  function botones(){
+    bAtras.disabled  = pos <= 0;
+    bAlante.disabled = pos >= pila.length - 1;
+    bInicio.disabled = actual === 'resumen';
+  }
+
+  function mostrar(v){
+    cerrar(false);
     if(actual) scrolls[actual] = window.scrollY;
     VISTAS.forEach(function(x){
       var el = document.getElementById('v-' + x);
@@ -1509,16 +1586,29 @@
     var el = document.getElementById('v-' + v);
     titulo.textContent = el ? el.getAttribute('data-titulo') : 'Resumen';
     if(ICONOS[v]){ imgtit.src = ICONOS[v]; marco.hidden = false; } else { marco.hidden = true; }
-    atras.hidden = !extra;
-    if(!extra) ultima = v;
     // el cambio de pestana salta, no se desliza: es una barra, no un enlace
     if(actual !== v){
-      void document.body.offsetHeight;                    // fuerza el reflujo de la vista nueva
+      void document.body.offsetHeight;                   // fuerza el reflujo de la vista nueva
       window.scrollTo({top: scrolls[v] || 0, behavior: 'instant'});
     }
     actual = v;
     try{ localStorage.setItem('milan.tab', v); }catch(e){}
-    if((empujar || location.hash) && location.hash.slice(1) !== v) history.replaceState(null, '', '#' + v);
+  }
+
+  // llega un hash nuevo: averigua si es un paso atras, uno adelante o un salto
+  function sincroniza(v){
+    v = normaliza(v);
+    if(pila[pos + 1] === v) pos++;
+    else if(pos > 0 && pila[pos - 1] === v) pos--;
+    else { pila = pila.slice(0, pos + 1); pila.push(v); pos = pila.length - 1; }
+    mostrar(v);
+    botones();
+  }
+
+  function navegar(v){
+    v = normaliza(v);
+    if(v === actual){ window.scrollTo({top:0, behavior:'smooth'}); return; }
+    location.hash = '#' + v;        // empuja entrada y dispara hashchange
   }
 
   function abrir(){
@@ -1539,20 +1629,20 @@
     var b = e.target.closest('button'); if(!b) return;
     if(b === bmas){ if(hoja.classList.contains('on')) cerrar(true); else abrir(); return; }
     cerrar(false);
-    var v = b.getAttribute('data-v');
-    if(v === actual){ window.scrollTo({top:0, behavior:'smooth'}); return; }
-    ir(v, true);
+    navegar(b.getAttribute('data-v'));
   });
 
   hoja.addEventListener('click', function(e){
     if(e.target.closest('#hojaok')){ cerrar(true); return; }
     var f = e.target.closest('.fila'); if(!f) return;
     cerrar(false);
-    ir(f.getAttribute('data-v'), true);
+    navegar(f.getAttribute('data-v'));
   });
 
   velo.addEventListener('click', function(){ cerrar(true); });
-  atras.addEventListener('click', function(){ cerrar(false); ir(ultima, true); });
+  bAtras.addEventListener('click', function(){ if(pos > 0){ cerrar(false); history.back(); } });
+  bAlante.addEventListener('click', function(){ if(pos < pila.length - 1){ cerrar(false); history.forward(); } });
+  bInicio.addEventListener('click', function(){ cerrar(false); navegar('resumen'); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') cerrar(true); });
 
   // los enlaces internos saltan a su vista antes de desplazarse
@@ -1564,17 +1654,21 @@
     if(v){
       v = v.id.replace('v-', '');
       if(v !== actual){
-        e.preventDefault(); cerrar(false); ir(v, true);
-        setTimeout(function(){ destino.scrollIntoView({behavior:'smooth', block:'start'}); }, 40);
+        e.preventDefault(); cerrar(false); navegar(v);
+        setTimeout(function(){ destino.scrollIntoView({behavior:'smooth', block:'start'}); }, 60);
       }
     }
   });
 
-  window.addEventListener('hashchange', function(){ ir(location.hash.slice(1), false); });
+  window.addEventListener('hashchange', function(){ sincroniza(location.hash.slice(1)); });
 
   var inicial = location.hash.slice(1);
   if(!inicial){ try{ inicial = localStorage.getItem('milan.tab') || 'resumen'; }catch(e){ inicial = 'resumen'; } }
-  ir(inicial, false);
+  inicial = normaliza(inicial);
+  pila = [inicial]; pos = 0;
+  history.replaceState(null, '', '#' + inicial);   // la primera entrada es nuestra
+  mostrar(inicial);
+  botones();
 })();
 </script>
 
