@@ -175,6 +175,21 @@
   @media (max-width:360px){ .tabbar .tl{font-size:9.5px} }
   @media (min-width:700px){ .tabbar{justify-content:center; gap:8px} .tabbar button{flex:0 0 108px} }
 
+  /* aviso de version nueva: solo aparece en la web instalada, no en el artifact */
+  .aviso{
+    position:fixed; left:50%; transform:translateX(-50%); z-index:45;
+    bottom:calc(env(safe-area-inset-bottom) + 74px); width:max-content; max-width:calc(100vw - 32px);
+    display:flex; align-items:center; gap:10px; padding:9px 10px 9px 16px;
+    background:var(--surface); border:1px solid var(--rule); border-radius:var(--r-pill);
+    box-shadow:0 6px 24px rgba(21,44,39,.18); font-family:var(--ui);
+  }
+  .aviso[hidden]{display:none}
+  .aviso .t{font-size:13.5px; color:var(--ink)}
+  .aviso button{font-family:var(--ui); font-size:13px; font-weight:600; border:0; cursor:pointer;
+                background:var(--accent); color:var(--on-accent); padding:7px 13px; border-radius:var(--r-pill)}
+  .aviso button.x{background:none; color:var(--ink-3); font-size:19px; padding:2px 7px; line-height:1}
+  .aviso button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
   /* ---------- hoja "Más secciones" ---------- */
   .velo{position:fixed; inset:0; z-index:50; background:rgba(21,44,39,.42);
         opacity:0; visibility:hidden; transition:opacity .2s, visibility 0s .2s}
@@ -1060,6 +1075,83 @@
   </section>
     </div>
 
+    <div class="view" id="v-emergencias" data-titulo="Emergencias">
+  <section id="emergencias">
+    <h2>Si pasa algo</h2>
+    <p class="sub">Lo que hace falta saber antes de necesitarlo, con los sitios reales que tenéis alrededor del portal.</p>
+
+    <div class="alert">
+      <div class="h">El número</div>
+      <h3>112, y ya está</h3>
+      <p>En Lombardía el 112 es el número único: cubre ambulancia, policía, bomberos y guardia costera, y da igual que marquéis 113, 115 o 118 porque todas las llamadas entran en la misma central. Responden en varios idiomas; si hace falta, meten a un intérprete en la llamada.</p>
+      <p>Se marca <b>gratis desde cualquier móvil</b>, aunque esté bloqueado, sin saldo o sin SIM. Si no sabéis decir dónde estáis, la app oficial <b>Where ARE U</b> manda vuestra posición GPS a la central al llamar.</p>
+      <div class="acts"><a class="btn" href="tel:112">📞 Llamar al 112</a></div>
+    </div>
+
+    <div class="fichas" style="margin-top:16px">
+
+      <article class="resto">
+        <p class="eyebrow">A 8 minutos andando</p>
+        <h3>Consulado General de España</h3>
+        <p class="desc">Está en Via Filippo Turati 29, a 659 metros del apartamento. Para un pasaporte perdido, un robo con denuncia o un problema serio, es vuestra gente.</p>
+        <dl class="facts">
+          <div><dt>Dirección</dt><dd>Via Filippo Turati 29, 4ª planta · 20121 Milano</dd></div>
+          <div><dt>Oficina</dt><dd>De lunes a viernes, de 9 a 13 h</dd></div>
+          <div><dt>Urgencias</dt><dd>Hay un teléfono de emergencia consular <b>24 horas</b> para casos de extrema urgencia: +39 335 265 959</dd></div>
+          <div><dt>Cuidado con las fechas</dt><dd>De vuestros cuatro días, el 25 es festivo, el 26 es Santo Stefano y el 27 es domingo. <b>La única ventana para ir en persona es el jueves 24 antes de las 13:00</b>, y aun así en Nochebuena pueden cerrar antes. Fuera de ahí, el teléfono de urgencias.</dd></div>
+        </dl>
+        <div class="actions">
+          <a href="tel:+39335265959">📞 Urgencias 24 h</a>
+          <a href="tel:+390236757720">☎️ Oficina</a>
+          <a href="https://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.4771266,9.1956262&dirflg=w">🧭 Cómo llegar</a>
+        </div>
+      </article>
+
+      <article class="resto">
+        <p class="eyebrow">Lo más probable que necesitéis</p>
+        <h3>Farmacias</h3>
+        <p class="desc">Tenéis una en la misma acera y veintisiete a menos de un kilómetro. En Italia la farmacia resuelve mucho más que en España: dan consejo, toman la tensión y saben a qué urgencia mandaros.</p>
+        <dl class="facts">
+          <div><dt>La de al lado</dt><dd>Farmacia Del Lazzaretto, a <b>50 metros</b> del portal</dd></div>
+          <div><dt>La de horario largo</dt><dd>Farmacia Formaggia, a 238 m. Según OpenStreetMap abre de lunes a viernes de 08:00 a 24:00. No confiéis en ese horario el día 25: los festivos van por otro cuadrante.</dd></div>
+          <div><dt>De noche y en festivo</dt><dd>Siempre hay farmacias de guardia por turnos. El turno del día va pegado en la puerta de cualquier farmacia cerrada, y la de la estación Centrale abre 24 horas.</dd></div>
+        </dl>
+        <div class="actions">
+          <a href="https://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.476478,9.203729&dirflg=w">🧭 La de 50 metros</a>
+          <a href="https://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.475254,9.206106&dirflg=w">🧭 La de horario largo</a>
+        </div>
+      </article>
+
+      <article class="resto">
+        <p class="eyebrow">Urgencias de verdad</p>
+        <h3>Pronto soccorso</h3>
+        <p class="desc">Si hay que ir a un hospital, dos están a un kilómetro largo del apartamento, menos de quince minutos andando o cinco en taxi. Para una urgencia grave no vayáis por vuestra cuenta: llamad al 112 y que os digan adónde.</p>
+        <dl class="facts">
+          <div><dt>Con urgencia pediátrica</dt><dd>Pronto Soccorso Medico Chirurgico e Pediatrico, a 1078 m. Es el que importa con un niño de once años.</dd></div>
+          <div><dt>Hospital general</dt><dd>Ospedale Fatebenefratelli, a 1040 m · +39 02 63631</dd></div>
+          <div><dt>Llevad la TSE</dt><dd>Con la Tarjeta Sanitaria Europea os atienden en la pública italiana en las mismas condiciones que a un italiano.</dd></div>
+        </dl>
+        <div class="actions">
+          <a href="https://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.478834,9.190542&dirflg=w">🧭 Urgencia pediátrica</a>
+          <a href="https://maps.apple.com/?saddr=Via%20Lecco%205%2C%2020124%20Milano%2C%20Italy&daddr=45.478839,9.191045&dirflg=w">🧭 Hospital</a>
+          <a href="tel:+390263631">📞 Fatebenefratelli</a>
+        </div>
+      </article>
+
+      <article class="resto">
+        <p class="eyebrow">El sábado 26</p>
+        <h3>En Suiza la TSE no vale</h3>
+        <p class="desc">El día del Bernina cruzáis a Suiza, que no está en la Unión Europea ni en el sistema de la Tarjeta Sanitaria Europea. Si pasa algo entre Tirano y St. Moritz, la TSE no cubre nada y la factura va entera a vuestro bolsillo.</p>
+        <dl class="facts">
+          <div><dt>Qué hacer</dt><dd>Mirad antes de salir si vuestro seguro de viaje, o el que lleve asociada la tarjeta con la que paguéis, cubre Suiza. Es el único día del viaje en que esto importa.</dd></div>
+          <div><dt>Allí también es 112</dt><dd>Suiza usa el 112 europeo igual que Italia, así que el número no cambia al cruzar.</dd></div>
+        </dl>
+      </article>
+
+      </div>
+  </section>
+    </div>
+
   </main>
 
   <nav class="tabbar" id="tabbar" aria-label="Secciones">
@@ -1071,6 +1163,12 @@
       <button type="button" id="bmas" aria-pressed="false" aria-haspopup="dialog" aria-expanded="false" aria-controls="hoja"><span class="ti tmas" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.9"/><circle cx="8.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="15.5" cy="12" r="1.3" fill="currentColor"/></svg></span><span class="tl">Más</span></button>
   </nav>
 
+  <div class="aviso" id="aviso" role="status" hidden>
+    <span class="t">Hay una versión nueva</span>
+    <button type="button" id="avisoya">Actualizar</button>
+    <button type="button" class="x" id="avisono" aria-label="Ahora no">×</button>
+  </div>
+
   <div class="velo" id="velo"></div>
   <div class="hoja" id="hoja" role="dialog" aria-modal="true" aria-labelledby="hojatit">
     <div class="asa" aria-hidden="true"></div>
@@ -1079,6 +1177,7 @@
       <li><button type="button" class="fila" data-v="calendario"><span class="cuadro"><img src="data:image/png;base64,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" alt="" width="22" height="22"></span><span class="et">Calendario</span><span class="chev" aria-hidden="true">›</span></button></li>
       <li><button type="button" class="fila" data-v="dinero"><span class="cuadro"><img src="data:image/png;base64,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" alt="" width="22" height="22"></span><span class="et">Dinero</span><span class="chev" aria-hidden="true">›</span></button></li>
       <li><button type="button" class="fila" data-v="preparacion"><span class="cuadro"><img src="data:image/png;base64,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" alt="" width="22" height="22"></span><span class="et">Preparación</span><span class="chev" aria-hidden="true">›</span></button></li>
+      <li><button type="button" class="fila" data-v="emergencias"><span class="cuadro"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOCAMAAAC5dNAvAAAA/1BMVEVqYWSepKC42dLa39bK7OTO7+nO7+lobI+NcWGz7uyKl8rty6rKtKFSPEmfiHUgFBRykbl4BgZ///+XZyB6eno0FhU7GxhLMS+vr68A//9iRjuAfqjWowtJKiK597mpwbvsqEZ9reOzhib/7QFjYBx/gHz//wD/0VcnBwcA/wBcQT5/v7+htrK66N//qv8AAADG7OXP9e/5+/L+//96pNRVRU12nMpPNjZqV1JtdpeIibhkVm1tiK2Nlo/G7OVGKisAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACLAx7iAAAAQHRSTlP8/v39GaBd//4N//7+//8b/wIC/wJU/J0DAff//+wE//////8a/wH/gAG8BJCRAwD+/v4B/////v3//////tD+8TmcRAAABdlJREFUeNrtmOl2ozgQhUvsON7aWew4a6e7p2cHWYjFYPP+bzVXgG0QJO1MzznzJ5XExgf8pUpVuiqJgv/U6AP3gfuPcbdC2b/F/dL5JPzTlfhZ7yqCVZl/+Pg+3Ow6JVqqi9nsD7Acex/C9rajiIv34T4FS2ZuNuPmtmWHHAacegMxEOfjPuHv2tsoGy+vlw/LP2vUwTjfO8GVONs7xLc0K9yGyDTH9MRDs03koSMW5+FmwYw87+aixlVvZsoY7VibyO3BohnyjuAZM8escdBkXkqum+dEIJ54wQCP9GGbLR+YgjCzppmU5+52671st1mey92J5wT+D3BXwTVdVA4xtml8k+5oNHJf7j28jXI64bjVrxfSfFvDJ8S5ORnLMxh5rpu5Lhnt4dNmzgDOU641cTZGZXKw0mgXTNgvvyFcBwZcEcW1RdJs0+De4m1clVXNCGlV8SLWScc7vvfFj1KR9ngsmSY3Dzc3N54nw453iHb1dqGI69/TkxHbsFR6F2NvnaTTi2lqdsYu7NWKXsa3gW+ExtHC0ODkXdQ29qibCm6vrDdx4tba80o2alPfaeE075CLR/EGTgjL7oaD77CkoU090m5BWbpa2sWtAqdH48q98XgMnDS6SoVk2P7r3onA3+s4tmPsJp3CvJLYDrrSvovEQ6rEMG4hdOe4WeaQgElCa6IJVCXvTgxVSE5w0irqjFygjxxnk9F2O5LMwE99WeN4U5QcRH8wWPwHa68NDUukspIh3VRdJmnjHj9UwMZ2HEfoOAxcvVidaEY6KSLY5wwpfaIoivFLCeN1nGHlmxIx29ZxInBMLW2GrAl4QYiURVGBvyhLDhpqIGT14F96sLcr4YQ8HKDFc1jkMiNX4Ll6KY68sC70vSW63i16BVfTinkGYWZFDFkBOppnURHDP6bP3Q5uoScBRhI0WcxB2xURJfNq5LIY3MhNukrlBFYbJ/rO7ZI4iicynhewWI2aokVF4ZYYQOpMNx0X1AWHoT2GmuD7VMoqE0dTuKyUkOdOuD2cUDpSVWXzgArVTXfAxXEX59JU3ZNd7/wuLqyK8oBDHoponjCmvItbhtwgzjXCba+4pzWIcCFs267KUeW98pCzGyqIVMiNc1hja//mcsp3k4LK1oprrxatzELlHM5PqqkScXmZqJlFD6iQDBEqmxeZm6vF0ZTJ5SW1YhWrVhkjr7aNLPDDrOah9/z9mQxgS/LSdYpvg69WDy9JcZ+9fH/2jrXCj2V3zKxfhWkcy+Ty+XKqHseU97ypvP/y5cvag1H5pHCXz/dktsfusVN3QmjStEunRjWICbkky5f7+/sHKYnKukB2KRn8KM2YZY1/h0kmdG1qHgUvU4qiLP48l3S8zTFdDvEi3EUn2Cv0v1yfZ9WTUyRZJXb0eU7lujUJPfSQBq9UAEtaT6As5+RUe7ZN8gRRImS8pQd3+E41z2P6hqUdyP2iL5+BjwyHPXmXo62qD5nfZXmD40+sbmbQBprg8fCxL+7iOHm73mGFGOXJ3WjU4DBsNPWOPYxJwImBlQwiag3itltZZlh4quaTs7TTF5lQU3u4qbAGlKrBuaNt5R1nXqfJumCmt3Ne6VECJxzC3ck039bBGloLqLpL7ytKYxBn6UtGhXNTkjWOG9RrKDfTWbVV6jdkvZW7wRGbbEfukHfVNuZVnN5X8B0KBRuApwMOaWXjykzsrzaqtaLr4Otrux6t60FbcefeyW+Qvru7XKrMGqyac4QWn5m0/PV69vom6krLLSatMham2A/UmtnI4saxLMe3DnvMV7xb6aPXdLUmXs1O6/l3009/unpjiyeEb+vi0uyM7ZNK4IN1++gLv7vPG9gxiqDf0TadsO8cIg0dPzhzA7pAL9VXFuyIRXMmoA4EgsH9++BuGw86e32/DsG9rSMTJ8E472hBqID3Q6cJDUVcve/gw++edVhBcPVTh0ZCCaLl+81JjCV+9gzqzHOidxwa/XbGKdbHceAH7n/H/QPpU/yepZVeSAAAAABJRU5ErkJggg==" alt="" width="22" height="22"></span><span class="et">Emergencias</span><span class="chev" aria-hidden="true">›</span></button></li>
     </ul>
   </div>
 </div>
@@ -1532,7 +1631,7 @@
 <script>
 (function(){
   var PRINCIPALES = ['resumen','itinerario','vuelo','transporte','guia'];
-  var EXTRA       = ['calendario','dinero','preparacion'];
+  var EXTRA       = ['calendario','dinero','preparacion','emergencias'];
   var VISTAS      = PRINCIPALES.concat(EXTRA);
   var VIEJAS      = {viaje:'resumen', comer:'guia', moverse:'transporte', lista:'preparacion'};
 
@@ -1660,6 +1759,12 @@
     }
   });
 
+  // el aviso lo enciende el registro del service worker, que solo existe en
+  // la version publicada; aqui solo se cablean sus dos botones
+  var aviso = document.getElementById('aviso');
+  document.getElementById('avisoya').addEventListener('click', function(){ location.reload(); });
+  document.getElementById('avisono').addEventListener('click', function(){ aviso.hidden = true; });
+
   window.addEventListener('hashchange', function(){ sincroniza(location.hash.slice(1)); });
 
   var inicial = location.hash.slice(1);
@@ -1675,6 +1780,13 @@
 <script>
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
+    // si ya habia un service worker mandando, un relevo significa que se ha
+    // descargado una version nueva: la pagina a la vista sigue siendo la vieja
+    var habia = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', function(){
+      var a = document.getElementById('aviso');
+      if(habia && a) a.hidden = false;
+    });
     navigator.serviceWorker.register('sw.js', {scope: './'}).catch(function(){});
   });
 }
